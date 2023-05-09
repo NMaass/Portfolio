@@ -19,4 +19,6 @@ const siteContent = [
   },
 ];
 
+export const sections = siteContent.map((item) => item.Title);
+
 export default siteContent;

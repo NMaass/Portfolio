@@ -10,11 +10,11 @@ const ContentArea = ({ text, media, title, index }) => {
   });
   const isMobile = useContext(MobileContext);
   return (
-    <Container maxWidth="xl" sx={{ height: "50vh" }}>
+    <Container maxWidth="xl" sx={{ height: "50vh" }} id={title}>
       <Fade in={loaded}>
         <Slide direction="left" in={loaded}>
           <div>
-            <Typography variant="h2" sx={{ textAlign: "left" }} id={title}>
+            <Typography variant="h2" sx={{ textAlign: "left" }}>
               {title}
             </Typography>
             <Paper>

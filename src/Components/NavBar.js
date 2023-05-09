@@ -1,21 +1,26 @@
-import { AppBar, Toolbar } from "@mui/material";
-import React from "react";
-import siteContent from "../data/siteContent";
-import NavItem from "./NavItem";
+import { AppBar, Tabs, Tab } from "@mui/material";
+import React, { useContext } from "react";
+import { sections } from "../data/siteContent";
+
+import { ScrollContext } from "../App";
 
 const NavBar = ({ doScroll }) => {
-  const menuItems = siteContent.map((item) => {
-    return (
-      <NavItem
-        section={item["Title"]}
-        doScroll={doScroll}
-        key={item["Title"]}
-      />
-    );
+  const activeSection = useContext(ScrollContext);
+  const handleChange = (event, newValue) => {
+    doScroll(sections[newValue]);
+  };
+  const menuItems = sections.map((title) => {
+    return <Tab label={title} key={title} />;
   });
   return (
     <AppBar position="sticky">
-      <Toolbar>{menuItems}</Toolbar>
+      <Tabs
+        value={sections.indexOf(activeSection)}
+        onChange={handleChange}
+        centered
+      >
+        {menuItems}
+      </Tabs>
     </AppBar>
   );
 };
