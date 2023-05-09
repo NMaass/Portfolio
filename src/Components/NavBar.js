@@ -5,7 +5,6 @@ import NavItem from "./NavItem";
 
 const NavBar = ({ doScroll }) => {
   const menuItems = siteContent.map((item) => {
-    console.log(item["Title"]);
     return (
       <NavItem
         section={item["Title"]}
