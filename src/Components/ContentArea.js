@@ -1,7 +1,15 @@
 import React, { useEffect, useContext } from "react";
-import { Container, Fade, Paper, Slide, Typography } from "@mui/material";
+import {
+  Container,
+  Divider,
+  Fade,
+  Paper,
+  Slide,
+  Typography,
+} from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { MobileContext } from "../App";
+import { theme } from "../AppTheme";
 
 const ContentArea = ({ text, media, title, index }) => {
   const [loaded, setLoaded] = React.useState(false);
@@ -10,14 +18,21 @@ const ContentArea = ({ text, media, title, index }) => {
   });
   const isMobile = useContext(MobileContext);
   return (
-    <Container maxWidth="xl" sx={{ height: "50vh" }} id={title}>
+    <Container
+      maxWidth="xl"
+      sx={{
+        height: "50vh",
+      }}
+      id={title}
+    >
       <Fade in={loaded}>
         <Slide direction="left" in={loaded}>
           <div>
-            <Typography variant="h2" sx={{ textAlign: "left" }}>
-              {title}
-            </Typography>
-            <Paper>
+            <Paper sx={{ backgroundColor: theme.palette.list[index % 3] }}>
+              <Typography variant="h2" sx={{ textAlign: "left" }}>
+                {title}
+              </Typography>
+              <Divider />
               <Grid
                 container
                 spacing={2}

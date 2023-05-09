@@ -57,7 +57,7 @@ function App() {
             container
             direction="column"
             justifyContent="center"
-            spacing={isMobile ? 2 : 6}
+            spacing={isMobile ? 10 : 0}
           >
             {listContent}
           </Grid>
