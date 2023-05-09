@@ -1,4 +1,4 @@
-import { AppBar, Tabs, Tab } from "@mui/material";
+import { AppBar, Tabs, Tab, Paper } from "@mui/material";
 import React, { useContext } from "react";
 import { sections } from "../data/siteContent";
 
@@ -14,13 +14,15 @@ const NavBar = ({ doScroll }) => {
   });
   return (
     <AppBar position="sticky">
-      <Tabs
-        value={sections.indexOf(activeSection)}
-        onChange={handleChange}
-        centered
-      >
-        {menuItems}
-      </Tabs>
+      <Paper>
+        <Tabs
+          value={sections.indexOf(activeSection)}
+          onChange={handleChange}
+          centered
+        >
+          {menuItems}
+        </Tabs>
+      </Paper>
     </AppBar>
   );
 };

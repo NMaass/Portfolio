@@ -6,6 +6,7 @@ import { useMediaQuery } from "@mui/material";
 import NavBar from "./Components/NavBar";
 import { useParams } from "react-router-dom";
 import { useOnScreen } from "./utils/useOnScreen";
+import Grid from "@mui/material/Unstable_Grid2";
 
 export const MobileContext = createContext();
 export const ScrollContext = createContext();
@@ -20,13 +21,14 @@ function App() {
 
   const listContent = siteContent.map((item, index) => {
     return (
-      <ContentArea
-        text={item["Description"]}
-        media={item["Media"]}
-        title={item["Title"]}
-        key={index}
-        index={index}
-      />
+      <Grid key={index}>
+        <ContentArea
+          text={item["Description"]}
+          media={item["Media"]}
+          title={item["Title"]}
+          index={index}
+        />
+      </Grid>
     );
   });
 
@@ -51,7 +53,14 @@ function App() {
       <MobileContext.Provider value={isMobile}>
         <ScrollContext.Provider value={currentSection}>
           <NavBar doScroll={doScroll} />
-          {listContent}
+          <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            spacing={2}
+          >
+            {listContent}
+          </Grid>
         </ScrollContext.Provider>
       </MobileContext.Provider>
     </div>
