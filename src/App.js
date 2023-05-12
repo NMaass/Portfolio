@@ -2,7 +2,7 @@ import "./App.css";
 import ContentArea from "./Components/ContentArea";
 import React, { createContext, useEffect } from "react";
 import siteContent from "./data/siteContent";
-import { useMediaQuery } from "@mui/material";
+import { CssBaseline, Divider, useMediaQuery } from "@mui/material";
 import NavBar from "./Components/NavBar";
 import { useParams } from "react-router-dom";
 import { useOnScreen } from "./utils/useOnScreen";
@@ -19,15 +19,10 @@ function App() {
     siteContent[0]["Title"]
   );
 
-  const listContent = siteContent.map((item, index) => {
+  const listContent = siteContent.map((section, index) => {
     return (
       <Grid key={index}>
-        <ContentArea
-          text={item["Description"]}
-          media={item["Media"]}
-          title={item["Title"]}
-          index={index}
-        />
+        <ContentArea section={section} index={index} />
       </Grid>
     );
   });
@@ -46,6 +41,7 @@ function App() {
 
     setCurrentSection(section);
     document.getElementById(section).scrollIntoView({ behavior: "smooth" });
+    window.scroll({ down: "5vh", behavior: "smooth" });
   };
 
   return (
@@ -57,7 +53,7 @@ function App() {
             container
             direction="column"
             justifyContent="center"
-            spacing={isMobile ? 10 : 0}
+            spacing={isMobile ? 20 : 10}
           >
             {listContent}
           </Grid>

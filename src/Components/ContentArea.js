@@ -3,6 +3,7 @@ import {
   Container,
   Divider,
   Fade,
+  Link,
   Paper,
   Slide,
   Typography,
@@ -10,50 +11,51 @@ import {
 import Grid from "@mui/material/Unstable_Grid2";
 import { MobileContext } from "../App";
 import { theme } from "../AppTheme";
+import ContentCard from "./ContentCard";
 
-const ContentArea = ({ text, media, title, index }) => {
-  const [loaded, setLoaded] = React.useState(false);
-  useEffect(() => {
-    setLoaded(true);
-  });
+const ContentArea = ({ section, index }) => {
   const isMobile = useContext(MobileContext);
   return (
-    <Container
-      maxWidth="xl"
-      sx={{
-        height: "50vh",
-      }}
-      id={title}
-    >
-      <Fade in={loaded}>
-        <Slide direction="left" in={loaded}>
-          <div>
-            <Paper sx={{ backgroundColor: theme.palette.list[index % 3] }}>
-              <Typography variant="h2" sx={{ textAlign: "left" }}>
-                {title}
-              </Typography>
-              <Divider />
-              <Grid
-                container
-                spacing={2}
-                direction={isMobile ? "column" : "row"}
-                justifyContent="flex-end"
-              >
-                <Grid xs={10}>
-                  <Typography variant="h6">{text}</Typography>
-                </Grid>
-                <Grid xs={2}>
-                  <img
-                    src={media}
-                    style={{ maxHeight: "40vh" }}
-                    alt="example of trait ranker selection"
+    <Container maxWidth="xl">
+      <div>
+        <Typography
+          variant="h2"
+          sx={{ textAlign: "left" }}
+          id={section["Title"]}
+          marginBottom="4rem"
+        >
+          {section["Title"]}
+        </Typography>
+        <Divider />
+        <Paper
+          sx={{
+            backgroundColor: theme.palette.list[index % 4],
+          }}
+        >
+          <Grid
+            container
+            spacing={10}
+            justifyContent="center"
+            alignItems="center"
+          >
+            {section["Content"].map((content) => {
+              return (
+                <Grid xs={11}>
+                  <ContentCard
+                    title={content["Title"]}
+                    description={content["Description"]}
+                    icons={content["Icons"]}
+                    media={content["Media"]}
+                    mediaAlt={content["MediaAlt"]}
+                    embed={content["Embed"]}
+                    key={content["Title"]}
                   />
                 </Grid>
-              </Grid>
-            </Paper>
-          </div>
-        </Slide>
-      </Fade>
+              );
+            })}
+          </Grid>
+        </Paper>
+      </div>
     </Container>
   );
 };

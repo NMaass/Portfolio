@@ -27,8 +27,8 @@ const NavBar = ({ doScroll }) => {
     );
   });
   return (
-    <AppBar position="sticky">
-      <Paper>
+    <AppBar position="sticky" sx={{ marginBottom: "5vh", height: "5vh" }}>
+      <Paper sx={{ borderRadius: 0 }}>
         <Tabs
           value={sections.indexOf(activeSection)}
           onChange={handleChange}
