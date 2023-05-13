@@ -50,11 +50,11 @@ const ContentCard = ({ title, description, media, mediaAlt, embed, icons }) => {
                 </div>
               )}
             </Grid>
-            <Grid xs={2}>
+            <Grid xs={isMobile ? 12 : 2}>
               <div
                 style={{
                   height: "40vh",
-                  width: "15vw",
+                  width: isMobile ? "80%" : "15vw",
                   marginRight: isMobile ? "0" : "-10%",
                   marginTop: isMobile ? "0" : "-15%",
                 }}
@@ -74,7 +74,8 @@ const ContentCard = ({ title, description, media, mediaAlt, embed, icons }) => {
                   <div
                     style={{
                       border: "1px solid black",
-                      height: "100%",
+
+                      height: "99%",
                       width: "100%",
                     }}
                   >
