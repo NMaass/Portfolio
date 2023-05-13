@@ -18,16 +18,12 @@ const ContentArea = ({ section, index }) => {
   return (
     <Container maxWidth="xl">
       <div>
-        <Typography
-          variant="h2"
-          sx={{ textAlign: "left" }}
-          id={section["Title"]}
-          marginBottom="4rem"
-        >
+        <Typography variant="h2" sx={{ textAlign: "left" }} marginBottom="4rem">
           {section["Title"]}
         </Typography>
         <Divider />
         <Paper
+          id={isMobile ? section["Title"] : ""} //Side effect of scroll correction hack
           sx={{
             backgroundColor: theme.palette.list[index % 4],
           }}

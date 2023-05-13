@@ -18,7 +18,7 @@ const NavBar = ({ doScroll }) => {
         key={title}
         sx={{
           "&.Mui-selected": {
-            backgroundColor: theme.palette.list[sections.indexOf(title) % 3],
+            backgroundColor: theme.palette.list[sections.indexOf(title) % 4],
             color: "black",
             borderRadius: "10px",
           },
@@ -27,7 +27,7 @@ const NavBar = ({ doScroll }) => {
     );
   });
   return (
-    <AppBar position="sticky" sx={{ marginBottom: "5vh", height: "5vh" }}>
+    <AppBar position="sticky" sx={{ height: "5vh" }}>
       <Paper sx={{ borderRadius: 0 }}>
         <Tabs
           value={sections.indexOf(activeSection)}

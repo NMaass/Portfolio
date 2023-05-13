@@ -21,9 +21,14 @@ function App() {
 
   const listContent = siteContent.map((section, index) => {
     return (
-      <Grid key={index}>
-        <ContentArea section={section} index={index} />
-      </Grid>
+      <div>
+        {!isMobile && (
+          <div style={{ height: "2vh" }} id={section["Title"]}></div> //scroll into view yOffset hack
+        )}
+        <Grid key={index}>
+          <ContentArea section={section} index={index} />
+        </Grid>
+      </div>
     );
   });
 
@@ -41,7 +46,6 @@ function App() {
 
     setCurrentSection(section);
     document.getElementById(section).scrollIntoView({ behavior: "smooth" });
-    window.scroll({ down: "5vh", behavior: "smooth" });
   };
 
   return (
