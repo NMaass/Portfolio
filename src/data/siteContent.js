@@ -1,5 +1,5 @@
 import React from "react";
-import headshot from ".././assets/headshot.jpg";
+
 import { AiFillGithub } from "react-icons/ai";
 import { HiComputerDesktop } from "react-icons/hi2";
 const siteContent = [
@@ -77,7 +77,7 @@ const siteContent = [
             frameborder="0"
             allowfullscreen=""
             title="Embedded post"
-          ></iframe>
+          />
         ),
       },
     ],
@@ -93,13 +93,65 @@ const siteContent = [
     ],
   },
   {
-    Title: "About Me",
+    Title: "Projects",
     Content: [
       {
         Title: "CalvinHacks 2020",
-        Description:
-          "A software engineer with a passion for learning and creating. I am currently working at a startup called Trait Ranker. I am also a student at the University of Washington studying Computer Science and Applied Mathematics.",
-        Media: headshot,
+        Description: (
+          <div>
+            At CalvinHacks 2020, my team and I developed a restaurant-finding
+            web app called Find Dine Online using <b>React</b>, <b>Python</b>,
+            and the <b>Google Maps API</b>. Out of 40 teams, we were proud to
+            place in the <b>finals</b>.
+          </div>
+        ),
+        Embed: (
+          <iframe
+            src="https://www.linkedin.com/embed/feed/update/urn:li:share:6648997759674396672"
+            height="100%"
+            width="100%"
+            frameborder="0"
+            allowfullscreen=""
+            title="CalvinHacks 2020"
+          />
+        ),
+      },
+      {
+        Title: "Orderle",
+        Description: (
+          <div>
+            I developed a Wordle-style trivia game using <b>React</b> that
+            challenges players to test their knowledge daily of both "if" and
+            "in what order".
+          </div>
+        ),
+        Media: "https://i.imgur.com/7G5Jwbk.gif",
+        Icons: [
+          {
+            Icon: <AiFillGithub />,
+            Link: "https://github.com/NMaass/orderle",
+          },
+        ],
+      },
+      {
+        Title: "SpartaHack 2023",
+        Description: (
+          <div>
+            Along with my team at SpartaHack 2023, I created a web app called
+            Ingredient Investigator that used optical character recognition to
+            scan items at the store, look up their ingredints, and warn the user
+            of any potentially harmful substancies. This was done using{" "}
+            <b>React</b>, <b>Python</b>, and <b>Tesseract</b>.{" "}
+          </div>
+        ),
+        Media:
+          "https://media.licdn.com/dms/image/C5622AQH3UxlEd5LUvQ/feedshare-shrink_1280/0/1675386323777?e=1686787200&v=beta&t=0HmhhiCm7xeQCpGuHaIU51HtHStUQhw_Zoo-bxfOpxc",
+        Icons: [
+          {
+            Icon: <AiFillGithub />,
+            Link: "https://github.com/NMaass/IngredientInvestigator",
+          },
+        ],
       },
     ],
   },
