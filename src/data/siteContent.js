@@ -16,11 +16,11 @@ const siteContent = [
 
         Icons: [
           {
-            Component: <AiFillGithub />,
+            Icon: <AiFillGithub />,
             Link: "https://github.com/NMaass/trait-ranker",
           },
           {
-            Component: <HiComputerDesktop />,
+            Icon: <HiComputerDesktop />,
             Link: "https://nmaass.github.io/trait-ranker/#/",
           },
         ],

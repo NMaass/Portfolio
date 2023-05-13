@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Fade, Slide, Divider, Paper, Typography, Link } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { MobileContext } from "../App";
+import IconButtonList from "./IconButtonList";
 
 const ContentCard = ({ title, description, media, mediaAlt, embed, icons }) => {
   const [loaded, setLoaded] = useState(false);
@@ -34,21 +35,7 @@ const ContentCard = ({ title, description, media, mediaAlt, embed, icons }) => {
               <Divider />
               <Typography variant="h6">{description}</Typography>
 
-              {icons && (
-                <div>
-                  {icons.map((iconData) => {
-                    return (
-                      <Link
-                        href={iconData["Link"]}
-                        target="_blank"
-                        key={iconData["Link"]}
-                      >
-                        {iconData["Icon"]}
-                      </Link>
-                    );
-                  })}
-                </div>
-              )}
+              {icons && <IconButtonList iconData={icons} />}
             </Grid>
             <Grid xs={isMobile ? 12 : 2}>
               <div
