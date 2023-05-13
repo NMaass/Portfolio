@@ -18,6 +18,7 @@ function App() {
   const [currentSection, setCurrentSection] = React.useState(
     siteContent[0]["Title"]
   );
+  const providerValue = { currentSection, setCurrentSection };
 
   const listContent = siteContent.map((section, index) => {
     return (
@@ -51,7 +52,7 @@ function App() {
   return (
     <div>
       <MobileContext.Provider value={isMobile}>
-        <ScrollContext.Provider value={currentSection}>
+        <ScrollContext.Provider value={providerValue}>
           <NavBar doScroll={doScroll} />
           <Grid
             container

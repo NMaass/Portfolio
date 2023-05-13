@@ -12,11 +12,13 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { MobileContext } from "../App";
 import { theme } from "../AppTheme";
 import ContentCard from "./ContentCard";
+import useNav from "../utils/useNav";
 
 const ContentArea = ({ section, index }) => {
   const isMobile = useContext(MobileContext);
+  const sectionRef = useNav(section["Title"]);
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="xl" ref={sectionRef}>
       <div>
         <Typography variant="h2" sx={{ textAlign: "left" }} marginBottom="4rem">
           {section["Title"]}

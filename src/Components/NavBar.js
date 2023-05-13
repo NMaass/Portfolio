@@ -4,12 +4,14 @@ import { sections } from "../data/siteContent";
 
 import { theme } from "../AppTheme";
 import { ScrollContext, MobileContext } from "../App";
+import { useEffect } from "react";
 
 const NavBar = ({ doScroll }) => {
-  const activeSection = useContext(ScrollContext);
+  const { currentSection, setCurrentSection } = useContext(ScrollContext);
   const handleChange = (event, newValue) => {
     doScroll(sections[newValue]);
   };
+
   const isMobile = useContext(MobileContext);
   const menuItems = sections.map((title) => {
     return (
@@ -30,11 +32,11 @@ const NavBar = ({ doScroll }) => {
     <AppBar position="sticky" sx={{ height: "5vh" }}>
       <Paper sx={{ borderRadius: 0 }}>
         <Tabs
-          value={sections.indexOf(activeSection)}
+          value={sections.indexOf(currentSection)}
           onChange={handleChange}
           centered={isMobile ? true : false}
           indicatorColor={
-            theme.palette.list[sections.indexOf(activeSection) % 3]
+            theme.palette.list[sections.indexOf(currentSection) % 3]
           }
         >
           {menuItems}
