@@ -62,8 +62,8 @@ const siteContent = [
             Science. Through Wayne, I interned at <b>PoGo</b>, developing a
             Flutter app to make political information more accessible. My
             favorite classes were Human Computer Interaction, Mobile App
-            Development, and Alogortihms. During my time there I studied{" "}
-            <b>Dart</b>,<b>Javascript</b>,<b>C</b>, <b>C++</b>, <b>Java</b>, and{" "}
+            Development, and Alogortihms. During my time there I studied
+            <b>Dart</b>,<b>Javascript</b>,<b>C</b>, <b>C++</b>, <b>Java</b>, and
             <b>Python</b>. I also helped the Society of Computer Developers
             organize a hackathon
           </div>
