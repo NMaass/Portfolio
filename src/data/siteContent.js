@@ -4,12 +4,11 @@ import { AiFillGithub } from "react-icons/ai";
 import { HiComputerDesktop } from "react-icons/hi2";
 const siteContent = [
   {
-    Title: "Projects",
+    Title: "Trait Ranker",
     Content: [
       {
-        Title: "Trait Ranker",
-        Description:
-          "Here are some of my projects. Click on the project name to see more details.",
+        Title: "Selection Screen",
+        Description: "The users swipe cards depnding if they value the trait.",
 
         Media: "https://i.imgur.com/7G5Jwbk.gif",
         MediaAlt: "Swiping cards on the selction screen of Trait Ranker",
@@ -125,7 +124,7 @@ const siteContent = [
             "in what order".
           </div>
         ),
-        Media: "https://i.imgur.com/7G5Jwbk.gif",
+        Media: "https://i.imgur.com/ItURKaX.gifv",
         Icons: [
           {
             Icon: <AiFillGithub />,
