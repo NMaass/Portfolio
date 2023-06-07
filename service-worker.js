@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "nmaass.github.io/portfolio/precache-manifest.9c1033972c93b9483b50e954054d0923.js"
+  "nmaass.github.io/Portfolio/precache-manifest.3d3e09ce9266e19f36071c74cc9c5293.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("nmaass.github.io/portfolio/index.html", {
+workbox.routing.registerNavigationRoute("nmaass.github.io/Portfolio/index.html", {
   
   blacklist: [/^\/_/,/\/[^/]+\.[^/]+$/],
 });
