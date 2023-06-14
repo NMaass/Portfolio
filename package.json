@@ -1,7 +1,7 @@
 {
   "name": "portfolio",
   "version": "0.1.0",
-  "homepage": "nmaass.github.io/portfolio",
+  "homepage": "https://nmaass.github.io/Portfolio/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.8",

@@ -7,7 +7,7 @@ const siteContent = [
     Title: "Trait Ranker",
     Content: [
       {
-        Title: "Selection Screen",
+        Title: "Selection",
         Description: "The users swipe cards depnding if they value the trait.",
 
         Media: "https://i.imgur.com/7G5Jwbk.gif",
@@ -25,28 +25,14 @@ const siteContent = [
         ],
       },
       {
-        Title: "Wayne State University",
+        Title: "Ranking",
         Description: (
           <div>
-            A graduate of Wayne State University with a bachelors in Computer
-            Science. Through Wayne, I interned at <b>PoGo</b>, developing a
-            Flutter app to make political information more accessible. My
-            favorite classes were Human Computer Interaction, Mobile App
-            Development, and Alogortihms. During my time there I studied{" "}
-            <b>Dart</b>,<b>Javascript</b>,<b>C</b>, <b>C++</b>, <b>Java</b>, and{" "}
-            <b>Python</b>. I also helped the Society of Computer Developers
-            organize a hackathon
+            The user is presented with a series of one-to-one comparisons until
+            a sorted list is created. The pairs are obtained using a
+            sophisticated selction algorithm that was customized for this
+            application.
           </div>
-        ),
-        Embed: (
-          <iframe
-            src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7056415530605318144"
-            height="100%"
-            width="100%"
-            frameBorder="0"
-            allowFullScreen=""
-            title="Embedded post"
-          ></iframe>
         ),
       },
     ],
@@ -86,8 +72,24 @@ const siteContent = [
     Title: "Experience",
     Content: [
       {
-        Title: "Grand Circus Coding Bootcamp",
-        Description: "Feel free to reach out to me at my email:",
+        Title: "Grand Circus Coding Bootcamp - Teaching Assistant",
+        Description:
+          "Supported professional training for Dysis Software Engineers to learn new web technolgies. This included reviewing code, answering questions, and providing feedback.",
+      },
+      {
+        Title: "Currant - Full Stack Software Engineer",
+        Description:
+          "Worked with founding team to create an E-commerce platform using React, Node.js, and AWS DynamoDB",
+      },
+      {
+        Title: "Two Fish Software - Frond End Software Engineer",
+        Description:
+          " Used Angular to translate customer specifications to functional components for 10% of the website's components",
+      },
+      {
+        Title: "Blue Cross Bleu Shield of Michigan - Software Engineer Intern",
+        Description:
+          "Designed and built a health assistant mobile app using React Native, Google Cloud Functions, and Dialog Flow",
       },
     ],
   },
@@ -124,7 +126,6 @@ const siteContent = [
             "in what order".
           </div>
         ),
-        Media: "https://i.imgur.com/ItURKaX.gifv",
         Icons: [
           {
             Icon: <AiFillGithub />,

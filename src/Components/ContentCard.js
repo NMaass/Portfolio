@@ -29,13 +29,20 @@ const ContentCard = ({ title, description, media, mediaAlt, embed, icons }) => {
             justifyContent="flex-end"
           >
             <Grid xs={10} sx={{ paddingLeft: "1rem", paddingTop: "1rem" }}>
-              <Typography variant="h4" sx={{ textAlign: "left" }}>
-                {title}
-              </Typography>
-              <Divider />
-              <Typography variant="h6">{description}</Typography>
-
-              {icons && <IconButtonList iconData={icons} />}
+              <Grid container direction="column" justifyContent="flex-end">
+                <Grid sx={2}>
+                  <Typography variant="h4" sx={{ textAlign: "left" }}>
+                    {title}
+                  </Typography>
+                </Grid>
+                <Divider />
+                <Grid sx={9}>
+                  <Typography variant="h6">{description}</Typography>
+                </Grid>
+                <Grid sx={1}>
+                  {icons && <IconButtonList iconData={icons} size="small" />}
+                </Grid>
+              </Grid>
             </Grid>
             <Grid xs={isMobile ? 12 : 2}>
               <div
