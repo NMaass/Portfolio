@@ -20,8 +20,45 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  transition: background-color 0.2s ease, color 0.2s ease;
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  body {
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  a, button {
+    transition: color 0.15s ease, text-decoration-color 0.15s ease, border-color 0.15s ease;
+  }
+}
+
+/* Accessibility: keyboard skip-link */
+.skip-link {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-accent);
+  color: var(--color-bg);
+  text-decoration: none;
+  border-radius: 0 0 var(--radius-md) 0;
+  transform: translateY(-110%);
+  z-index: 100;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid var(--color-highlight);
+  outline-offset: 2px;
+}
+
+/* Accessibility: visible focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+main:focus { outline: none; }
 
 main {
   flex: 1;
@@ -60,7 +97,6 @@ a {
   text-decoration-color: var(--color-border);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
-  transition: color 0.15s ease, text-decoration-color 0.15s ease;
 }
 
 a:hover {
@@ -173,19 +209,36 @@ img {
 
 .theme-toggle {
   background: none;
-  border: 1px solid var(--color-border);
+  /* 3:1 border contrast required for interactive controls per WCAG 1.4.11 */
+  border: 1px solid var(--color-text-muted);
   border-radius: var(--radius-sm);
-  color: var(--color-text-muted);
+  color: var(--color-text);
   cursor: pointer;
   font-size: 1rem;
-  padding: 4px 10px;
+  /* 44x44 minimum touch target per WCAG 2.5.5 */
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 12px;
   line-height: 1;
   font-family: var(--font-serif);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .theme-toggle:hover {
   color: var(--color-accent);
   border-color: var(--color-accent);
+}
+
+/* Show moon in light mode, sun in dark mode (i.e. show what you'd switch TO) */
+.theme-icon-sun { display: none; }
+.theme-icon-moon { display: block; }
+[data-theme='dark'] .theme-icon-sun { display: block; }
+[data-theme='dark'] .theme-icon-moon { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .theme-icon-sun { display: block; }
+  :root:not([data-theme='light']) .theme-icon-moon { display: none; }
 }
 
 /* Footer */

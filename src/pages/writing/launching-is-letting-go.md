@@ -58,13 +58,15 @@ Each of those is a small thing on its own. Together they're a system I'd be answ
 
 ## The simpler question
 
-My lead is patient enough to hear out all of my architectural ideas. He listened to this one, sat with it for a second, and hit me with the classic.
+I took the problem to my lead. I had one real proposal — the worker service — and I walked him through that for a while. Then I ran out of confident ideas and started spitballing: ways to persist the in-flight memory off-process and leave a reference behind, maybe push it through a queue. He listened, sat with it for a moment, and hit me with the classic.
 
 "What if we just bump it to 2 GB?"
 
-Part of why I hadn't even considered that move was that I didn't know what it would cost. Memory is not cheap right now, and the instinct to first ask "can I be smarter with what I have?" before reaching for more of it isn't, on its own, a bad one.
+Not the worker service. Not any of the spitballing. A different question entirely.
 
-But I also hadn't actually checked. When I did, the answer was rounding error — a few extra dollars a month for a machine that already hibernated when nothing was happening. The pipeline now had room to absorb overlapping requests instead of falling over.
+I was spitballing in the first place because I'd never actually had this problem before. Most code I write runs on machines with so much RAM headroom nobody thinks about it. If I'd tried to actually build any of the off-process ideas, my next step would have been Googling how it's done — I don't know offhand. Who codes for a 256 MB machine?
+
+The other reason I never considered just bumping the VM was that I didn't know what it would cost. Memory is not cheap right now, and the instinct to first ask "can I be smarter with what I have?" before reaching for more of it isn't, on its own, a bad one. But I also hadn't actually checked. When I did, the answer was rounding error — a few extra dollars a month for a machine that already hibernated when nothing was happening. The pipeline now had room to absorb overlapping requests instead of falling over.
 
 The fix was a one-line change in fly.toml. The lesson took longer to learn.
 

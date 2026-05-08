@@ -1,17 +1,22 @@
 ---
 import Base from './Base.astro';
 
-interface Props {
+interface Frontmatter {
   title: string;
   description?: string;
   date: string;
 }
 
-const { title, description, date } = Astro.props;
+interface Props {
+  frontmatter: Frontmatter;
+}
+
+const { title, description, date } = Astro.props.frontmatter;
 const formatted = new Date(date).toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
+  timeZone: 'UTC',
 });
 ---
 
