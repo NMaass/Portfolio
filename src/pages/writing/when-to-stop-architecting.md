@@ -1,29 +1,39 @@
 ---
 layout: ../../layouts/Post.astro
-title: When to Stop Architecting
-description: A memory bug, a microservice I almost built, and one line of Fly config. On knowing when not to keep architecting.
+title: Launching is letting go
+description: A memory bug, a worker service I almost built, and one line of Fly config. On the kind of problem where the boring answer is the senior one.
 date: 2026-05-08
 ---
 
 I almost turned a memory issue into a distributed-systems project.
 
-The project was a small client prototype with an AI media pipeline. A user uploaded an MP4. In the browser, we loaded FFmpeg through WebAssembly and extracted the audio. The audio went to Deepgram for transcription. The transcript fanned out to six LLM calls through OpenRouter, two prompt variants across three models, and the results came back to the frontend as an AI-assisted analysis.
+The project was a small client prototype with an AI media pipeline. A user uploaded an MP4. In the browser, FFmpeg through WebAssembly stripped the audio out. The audio went to Deepgram for transcription. The transcript fanned out to six LLM calls through OpenRouter — two prompt variants across three models — and the results came back to the frontend as an AI-assisted analysis.
 
 The pipeline worked. The uncomfortable question was whether it would still work when a second request arrived while the first one was still running.
 
 ## The first deploy
 
-We deployed conservatively on Fly with 512 MB of RAM. The pipeline seemed lightweight, the prototype did not need high throughput, and the machine could hibernate between requests. It was dirt cheap.
+We deployed conservatively on Fly. There was a spec sheet of what the prototype was supposed to need: lightweight, low throughput, hibernate-between-requests. So I picked the smallest VM Fly offered, 256 MB of RAM, and called it done. It was dirt cheap.
 
-We were also pre-launch. The product was a prototype for a client, not a public release. Every dollar of complexity I added now was a dollar somebody would pay to maintain later.
+Dirt cheap mattered. This was a prototype for a client we hadn't signed a contract with yet. It wasn't even clear the product would get funded. Every dollar of complexity I added now was a dollar somebody might never get to pay back. Pre-launch, the cost of a piece of infrastructure isn't the bill — it's whether anyone is around in six months to keep it running.
+
+In hindsight, 256 MB was undersized. I'll come back to that. The honest version of the story is that a mistake like that mattered a lot less than my attitude toward fixing it.
 
 ## The crash
 
-It crashed at the perfect time: early, under test conditions, before users depended on it. One video was still moving through the pipeline when another request came in, and the machine ran out of memory.
+It crashed at the right time — early, under test conditions, before users depended on it. One video was still moving through the pipeline when another request came in, and the machine ran out of memory.
 
-When I dug into the failure, two things were happening at once. The first implementation had avoidable memory duplication. We were holding copies of the transcript longer than necessary, and prompt preparation was being repeated per model call instead of done once and reused. With six fan-out calls, that adds up. The second thing was real concurrency pressure: even after I removed the waste, two overlapping requests would still stack memory in ways the small machine could not absorb.
+My lead has always taught me to fail fast, and I count that crash as a real success of the dev process. I'd much rather find a memory ceiling on a Tuesday afternoon staging deploy than during a client demo.
 
-The bug surfaced exactly when it should have. Bugs in early testing are information, not disasters.
+## Peeling back layers
+
+I dug into the failure expecting one cause and found three.
+
+The first layer: Claude had been lazy. I'd asked it to strip the audio out of the MP4 with FFmpeg before upload, and somewhere along the way that work hadn't actually been wired up. Reading the file the way it actually existed in the repo — and walking the commit history — made it obvious. The implementation in the code was not the implementation in my head. Once that was fixed, the pipeline was moving audio, not video.
+
+The second layer was just gross. The LLM fan-out was holding copies of the transcript longer than it needed to, and it was rebuilding the entire request body — system prompt, user prompt, model name, JSON envelope — six separate times, instead of pre-serializing the two messages once and slotting them into per-model bodies. With six calls running in parallel, that adds up.
+
+The third layer is the one that finally surfaced the actual problem. Even after I cleaned up the duplication, the math didn't fit on a 256 MB machine. Two overlapping requests would still stack memory in ways that small VM couldn't absorb. That's when I went and measured how big the in-flight payloads actually were, and looked at the RAM cap I'd handed myself in fly.toml.
 
 ## The architecture I wanted to build
 
@@ -31,9 +41,7 @@ My first instinct was to reach for the architecture I knew we might eventually n
 
 I started sketching a worker service. The API server would accept the request, persist the upload reference somewhere durable, enqueue the heavy work, and return a job ID. A separate Fly machine would pull from the queue, run the pipeline, write the result back, and shut down. If another request came in, Fly could spin up another worker. The web process would stay lean, the heavy work would move out of request memory, and we would scale by adding workers.
 
-It was a reasonable design. It was also a real system to own.
-
-I started listing what that system would actually require:
+It was a reasonable design. It was also a real system to own:
 
 - Persistent job state somewhere
 - A queue, or a tagged-row pattern in the database
@@ -46,47 +54,43 @@ I started listing what that system would actually require:
 - Health checks on the worker
 - A second deployment unit to debug
 
-Each of those is a small thing. Together they are a system I would be answering questions about for the next year.
+Each of those is a small thing on its own. Together they're a system I'd be answering questions about for the next year.
 
 ## The simpler question
 
-I was talking through this design with my lead when he asked the question I should have asked first.
+My lead is patient enough to hear out all of my architectural ideas. He listened to this one, sat with it for a second, and hit me with the classic.
 
-"What does the boring fix actually cost?"
+"What if we just bump it to 2 GB?"
 
-He meant: what if we just give the machine more memory.
+Part of why I hadn't even considered that move was that I didn't know what it would cost. Memory is not cheap right now, and the instinct to first ask "can I be smarter with what I have?" before reaching for more of it isn't, on its own, a bad one.
 
-We were running on a 512 MB Fly machine. Moving up to 2 GB was a one-line change in the Fly config. The cost difference for the project was negligible. The machine still hibernated when nothing was happening. The pipeline now had room to absorb overlapping requests instead of falling over.
+But I also hadn't actually checked. When I did, the answer was rounding error — a few extra dollars a month for a machine that already hibernated when nothing was happening. The pipeline now had room to absorb overlapping requests instead of falling over.
 
-The fix was a config change. The lesson took longer to learn.
+The fix was a one-line change in fly.toml. The lesson took longer to learn.
 
-## Why that was the right call
+## What I was actually solving for
 
-The decision was not "the simple thing won." The decision was a cost comparison.
+My problem on this project was that all I was holding was a hammer. I wanted to solve an infrastructure problem with software, because software is what I know how to write. Adding 1.75 GB of RAM didn't feel like solving the problem. Designing a worker service did. That instinct was wrong, and figuring out why it was wrong is most of what I took away from this.
 
-On one side, a few extra dollars a month for a larger machine. On the other side, a system to own: the queue, the worker, the job table, the retries, the observability, the new deployment unit, the new debugging surface. Pre-launch, the dollar cost of more RAM was rounding error. The complexity cost of a worker service would have shown up every week for the next year.
+I take it a little personally that software has gotten worse and worse at memory management. I think it's a tell of inelegant software. But I also think it's a tell of software for the real world. The hours I'd spend tightening allocations are hours I'm not spending watching a real user touch the product, which is the only thing that tells me whether the product should exist in the form I'm building it. Users are not going to notice the size of the Fly machine. They're going to notice whether the product exists when they need it, whether it's any good when it does, and whether anybody told them about it. Those are the real problems and they all sit downstream of launching.
 
-I would still build the worker service eventually. There is a real version of this app, with a different scale, where the architecture is the right answer. But "eventually" is doing a lot of work in that sentence. The product was not at the eventually stage. It was at the can-we-still-launch-this-quarter stage.
+The Y Combinator line I keep coming back to: if you're not at least a little embarrassed by your launch, you launched too late. And the corollary — if you can pay a single cent to free up dev time between you and launching, just pay it. More RAM is dollars. A worker service is dev time and forever-after maintenance. Pre-launch, those are not even on the same order of magnitude.
 
-A queue is not just a queue. It is job state, retries, idempotency, observability, partial failure, backpressure, deployment complexity, and new ways for users to get stuck. Those things are all worth building when the product proves it needs them. Building them before launch is one of the easier ways to spend a quarter without learning anything.
+I want to spend my "interesting software" budget on the parts of the system that actually got us to a launch. Not on the architecture I might need a year from now if a launch ever happens.
 
-## The lesson
+## Launching is letting go
 
-Code is not free. The cost of a code solution is not just the time it takes to write. It is the future surface area it creates.
+A queue isn't just a queue. It's job state, retries, idempotency, observability, partial failure, backpressure, deployment complexity, and new ways for users to get stuck. Those things are all worth building when the product proves it needs them. Building them before launch is one of the easier ways to spend a quarter without learning anything.
 
-Pre-launch, that future surface area is especially expensive, because the thing you are protecting is your ability to keep learning. Every hour spent maintaining infrastructure is an hour not spent watching a real user touch the product. Every system you have to debug is a system between you and the next thing you need to learn about whether the product should exist in the form you are building it.
+Architecture should follow product pressure. Pre-launch, the right move is often to fix the waste you can clearly see, buy temporary headroom, and defer the system you know you may eventually need. The machine learns whether it actually needs the architecture. You don't.
 
-Architecture should follow product pressure. At an early stage, the right answer is often to remove waste, buy temporary headroom, and defer the system you know you may eventually need. The machine learns whether it actually needs the architecture. You don't.
-
-## The heuristic I use now
-
-Before I add architecture, I ask:
+Before I add architecture now, I ask myself four things:
 
 - Is the current implementation wasting resources I can simply stop wasting?
 - What does the boring infrastructure fix actually cost?
-- Am I solving a real problem the product is hitting today, or a hypothetical problem I am projecting onto next year?
+- Am I solving a real problem the product is hitting today, or a hypothetical problem I'm projecting onto next year?
 - Will this architecture help us launch, or delay us from learning?
 
-The answers are not always the same. Sometimes the queue is the right move now. Sometimes a duplicate write actually does need an idempotency layer because the cost of getting it wrong is real money. The point is not to avoid architecture. The point is to make sure the architecture is paying for itself the day you ship it, not the day you imagine you might.
+The answers aren't always the same. Sometimes the queue is the right move now. Sometimes a duplicate write actually does need an idempotency layer because the cost of getting it wrong is real money. The point isn't to avoid architecture. The point is to make sure the architecture is paying for itself the day you ship it, not the day you imagine you might.
 
-The senior move on this project was not picking the most elegant design. It was changing one line of Fly config and going back to building the product.
+The senior move on this project wasn't picking the most elegant design. It was changing one line of fly.toml and going back to building the product.
