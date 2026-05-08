@@ -177,17 +177,20 @@ img {
   width: 100%;
 }
 
-.site-name {
-  font-size: var(--text-lg);
-  font-weight: 600;
-  color: var(--color-text);
-  text-decoration: none;
-  letter-spacing: -0.005em;
-}
-
-.site-name:hover {
+.site-mark {
+  display: inline-flex;
+  align-items: center;
   color: var(--color-accent);
   text-decoration: none;
+  border-radius: var(--radius-sm);
+}
+
+.site-mark:hover {
+  color: var(--color-accent-hover);
+}
+
+.site-mark svg {
+  display: block;
 }
 
 .site-nav {

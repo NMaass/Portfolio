@@ -10,10 +10,16 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       Full-stack engineer. Shipping software for users' actual workflows.
     </p>
     <p class="lede">
-      2.5 years and 9 client products at <a href="https://avodahsoftware.com">Avodah Software</a>
-      across payments, scheduling, AI-assisted healthcare, and multi-tenant integrations.
+      Contracting with <a href="https://avodahsoftware.com">Avodah Software</a> since Feb 2024.
+      Worked on 9 client products across payments, scheduling, AI-assisted healthcare, and
+      multi-tenant admin tools, leading 4 end-to-end and contributing substantial slices to 5 more.
       Strong on translating ambiguous client asks into scoped launches, production hardening,
       and prompt engineering for agentic AI.
+    </p>
+    <p class="hero-now">
+      <span class="hero-now-label">Currently</span>
+      Mid-level engineer looking for my next role at a devtools or AI company.
+      Implementation engineer, forward-deployed engineer, customer engineer, or product engineer.
     </p>
   </section>
 
@@ -21,6 +27,24 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <h2>Selected Work</h2>
 
     <article class="project">
+      <a class="project-media project-media-pair" href="https://cube-merge.nmaass.dev" aria-label="Open Cube Merge">
+        <img
+          class="project-media-desktop"
+          src={`${base}/projects/cube-merge.png`}
+          alt="Cube Merge diff view on desktop: removals on the left, additions on the right, grouped by color."
+          loading="lazy"
+          width="1280"
+          height="800"
+        />
+        <img
+          class="project-media-mobile"
+          src={`${base}/projects/cube-merge-mobile.png`}
+          alt="Cube Merge mobile view: same diff, stacked layout."
+          loading="lazy"
+          width="375"
+          height="812"
+        />
+      </a>
       <header class="project-header">
         <h3><a href="https://cube-merge.nmaass.dev">Cube Merge</a></h3>
         <span class="project-meta">Lighthouse 100/100 · 307 KB</span>
@@ -40,6 +64,15 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </article>
 
     <article class="project">
+      <a class="project-media" href="https://trait-ranker.nmaass.dev" aria-label="Open Trait Ranker">
+        <img
+          src={`${base}/projects/trait-ranker.gif`}
+          alt="Trait Ranker desktop drag-and-drop interaction."
+          loading="lazy"
+          width="1892"
+          height="911"
+        />
+      </a>
       <header class="project-header">
         <h3><a href="https://trait-ranker.nmaass.dev">Trait Ranker</a></h3>
         <span class="project-meta">Lighthouse 99/100 · ~50 users</span>
@@ -59,16 +92,24 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </article>
 
     <article class="project">
+      <div class="project-media project-media-stat" aria-hidden="true">
+        <div class="stat-grid">
+          <div class="stat"><span class="stat-num">4</span><span class="stat-label">Led end-to-end</span></div>
+          <div class="stat"><span class="stat-num">5</span><span class="stat-label">Slices contributed</span></div>
+          <div class="stat"><span class="stat-num">100</span><span class="stat-label">Production Lighthouse</span></div>
+        </div>
+      </div>
       <header class="project-header">
-        <h3>Avodah Software (2024–present)</h3>
-        <span class="project-meta">Production · NDA-safe summary</span>
+        <h3>Avodah Software (Feb 2024–present)</h3>
+        <span class="project-meta">Contract · NDA-safe summary</span>
       </header>
-      <p class="project-stack">TypeScript · React · Cloudflare Workers · Stripe Connect · Microsoft Graph · Deepgram</p>
+      <p class="project-stack">TypeScript · React · Bun · Fastify · Cloudflare Workers · Supabase · Stripe Connect · Microsoft Graph · Deepgram</p>
       <p>
-        Built and shipped 9 client products as a full-stack engineer. Highlights: a closed-loop transaction
-        service for a B2B used-car wholesale marketplace; a fully automated booking-to-report pipeline
-        integrating 7 vendors with parallel-agent LLM review; a Cloudflare Workers SaaS-marketplace plugin
-        scaffolded to production in 2 days. Each shipped with production Lighthouse 95–100/100.
+        Worked on 9 client products at Avodah since Feb 2024 — led 4 end-to-end and contributed substantial
+        slices to 5 more. Highlights: an AI-assisted healthcare workflow with streaming transcription,
+        Microsoft Bookings/Teams integration, and parallel-agent LLM review; a GoHighLevel + Cloudflare
+        Workers scheduling integration; a B2B used-car wholesale marketplace with Stripe Connect ACH
+        escrow, FedEx integration, and an invite/onboarding flow.
       </p>
       <p class="project-links">
         <a href={`${base}/resume.pdf`}>Resume (PDF)</a>
@@ -113,6 +154,23 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     line-height: var(--leading-relaxed);
   }
 
+  .hero-now {
+    max-width: var(--max-width-prose);
+    margin-top: var(--space-md);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  .hero-now-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-highlight-text);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-right: var(--space-sm);
+  }
+
   .selected-work {
     padding: var(--space-2xl) 0;
   }
@@ -128,12 +186,119 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   }
 
   .project {
-    padding: var(--space-lg) 0;
+    padding: var(--space-2xl) 0;
     border-bottom: 1px solid var(--color-border-soft);
   }
 
   .project:last-of-type {
     border-bottom: none;
+  }
+
+  /* Matt around every screenshot: paper-tone surround so the app's own palette
+     never butts directly against the site palette. Same treatment for desktop,
+     mobile pair, GIF, or stat block. */
+  .project-media {
+    display: block;
+    width: 100%;
+    margin-bottom: var(--space-lg);
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border-soft);
+  }
+
+  a.project-media {
+    transition: border-color 0.2s ease;
+  }
+
+  a.project-media:hover {
+    border-color: var(--color-accent);
+  }
+
+  .project-media > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 2px 12px var(--color-shadow);
+  }
+
+  /* Desktop + mobile pair: desktop fills the row, mobile sits at the right edge */
+  .project-media-pair {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-md);
+    align-items: end;
+  }
+
+  .project-media-pair img {
+    display: block;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 2px 12px var(--color-shadow);
+  }
+
+  .project-media-desktop {
+    width: 100%;
+    height: auto;
+  }
+
+  .project-media-mobile {
+    width: 160px;
+    height: auto;
+  }
+
+  @media (max-width: 600px) {
+    .project-media-pair {
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+    .project-media-mobile {
+      width: 50%;
+    }
+  }
+
+  .project-media-stat {
+    aspect-ratio: 16 / 7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-bg-elevated), var(--color-code-bg));
+    padding: var(--space-2xl);
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2xl);
+    text-align: center;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .stat-num {
+    font-family: var(--font-serif);
+    font-size: var(--text-4xl);
+    font-weight: 600;
+    color: var(--color-accent);
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 600px) {
+    .stat-grid { gap: var(--space-md); }
+    .stat-num { font-size: var(--text-2xl); }
   }
 
   .project-header {
