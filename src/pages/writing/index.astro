@@ -1,0 +1,104 @@
+---
+import Base from '../../layouts/Base.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const posts = [
+  {
+    slug: 'when-to-stop-architecting',
+    title: 'When to Stop Architecting',
+    date: '2026-05-08',
+    description:
+      'A memory bug, a microservice I almost built, and one line of Fly config. On knowing when not to keep architecting.',
+  },
+];
+---
+
+<Base title="Writing — Nicholas Maassen">
+  <section class="writing-index">
+    <h1>Writing</h1>
+    <p class="lede">
+      Notes on engineering judgment, integration work, and shipping under constraints.
+    </p>
+    <ul class="post-list">
+      {
+        posts.map((post) => (
+          <li class="post-row">
+            <a class="post-title" href={`${base}/writing/${post.slug}`}>
+              {post.title}
+            </a>
+            <p class="post-description">{post.description}</p>
+            <time class="post-date" datetime={post.date}>
+              {new Date(post.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </time>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .writing-index {
+    max-width: var(--max-width-prose);
+    padding: var(--space-2xl) 0;
+  }
+
+  .writing-index h1 {
+    font-size: var(--text-4xl);
+    margin-bottom: var(--space-md);
+  }
+
+  .lede {
+    color: var(--color-text-muted);
+    font-style: italic;
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .post-row {
+    padding: var(--space-lg) 0;
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+
+  .post-row:last-child {
+    border-bottom: none;
+  }
+
+  .post-title {
+    display: block;
+    font-size: var(--text-2xl);
+    color: var(--color-text);
+    text-decoration: none;
+    margin-bottom: var(--space-sm);
+    line-height: var(--leading-snug);
+  }
+
+  .post-title:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-color: var(--color-highlight);
+  }
+
+  .post-description {
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-sm);
+  }
+
+  .post-date {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    letter-spacing: 0.02em;
+  }
+</style>

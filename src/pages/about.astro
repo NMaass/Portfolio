@@ -1,0 +1,85 @@
+---
+import Base from '../layouts/Base.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Base title="About — Nicholas Maassen">
+  <section class="about">
+    <h1>About</h1>
+
+    <p>
+      I'm a full-stack software engineer with 2.5 years at Avodah Software, building client-facing
+      products across payments, healthcare, scheduling, messaging, and admin tools.
+    </p>
+
+    <p>
+      I work close to the problem. Most of my recent projects involved figuring out what a client
+      actually needed (not just what they asked for), prototyping in production, and hardening
+      integrations after real users got their hands on them. I care about Core Web Vitals, vendor
+      coordination, multi-tenant OAuth, and the quiet kind of architecture that holds up under
+      real traffic.
+    </p>
+
+    <h2>Currently</h2>
+
+    <p>
+      Looking for full-time roles as a Product Engineer, Full-Stack Engineer, or Forward Deployed
+      Engineer at companies that take engineering writing seriously and ship to real users every week.
+      Especially interested in developer tools, AI-augmented workflows, and integration-heavy products.
+    </p>
+
+    <h2>Tools I use daily</h2>
+
+    <p>
+      TypeScript, React, Node.js, PostgreSQL, Cloudflare Workers, Fly.io, Stripe Connect,
+      Microsoft Graph, Clerk, Sentry. Claude Code and Codex with custom skills for output-driven
+      prompts, multi-agent planning, and pre-review antipattern scans.
+    </p>
+
+    <h2>Reach me</h2>
+
+    <ul class="contact-list">
+      <li><a href="mailto:nicholasfmaassen@gmail.com">nicholasfmaassen@gmail.com</a></li>
+      <li><a href="https://github.com/NMaass">github.com/NMaass</a></li>
+      <li><a href="https://www.linkedin.com/in/nicholas-maassen-63ab53187/">LinkedIn</a></li>
+      <li><a href={`${base}/resume.pdf`}>Resume (PDF)</a></li>
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .about {
+    max-width: var(--max-width-prose);
+    padding: var(--space-2xl) 0;
+  }
+
+  .about h1 {
+    font-size: var(--text-4xl);
+    margin-bottom: var(--space-xl);
+  }
+
+  .about h2 {
+    font-size: var(--text-xl);
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-md);
+    color: var(--color-text-muted);
+    font-weight: 500;
+    font-size: var(--text-base);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .about p {
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-md);
+  }
+
+  .contact-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .contact-list li {
+    margin-bottom: var(--space-sm);
+  }
+</style>

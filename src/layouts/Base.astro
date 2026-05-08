@@ -1,0 +1,77 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Nicholas Maassen — Full-stack engineer. Shipping software for users' actual workflows." } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#f5efe0" />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+    <script is:inline>
+      // Theme init — runs before paint to avoid FOUC.
+      try {
+        const stored = localStorage.getItem('theme');
+        if (stored === 'dark' || stored === 'light') {
+          document.documentElement.setAttribute('data-theme', stored);
+        }
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a href={`${base}/`} class="site-name">Nicholas Maassen</a>
+      <nav class="site-nav">
+        <a href={`${base}/writing`}>Writing</a>
+        <a href={`${base}/about`}>About</a>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">◐</button>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>
+        <a href="https://github.com/NMaass">GitHub</a>
+        ·
+        <a href="https://www.linkedin.com/in/nicholas-maassen-63ab53187/">LinkedIn</a>
+        ·
+        <a href="mailto:nicholasfmaassen@gmail.com">Email</a>
+        ·
+        <a href={`${base}/resume.pdf`}>Resume (PDF)</a>
+      </p>
+    </footer>
+    <script>
+      const toggle = document.getElementById('theme-toggle');
+      const html = document.documentElement;
+      function currentTheme() {
+        const explicit = html.getAttribute('data-theme');
+        if (explicit) return explicit;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      toggle?.addEventListener('click', () => {
+        const next = currentTheme() === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+      });
+    </script>
+  </body>
+</html>

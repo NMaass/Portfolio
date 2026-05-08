@@ -1,0 +1,218 @@
+---
+import Base from '../layouts/Base.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Base title="Nicholas Maassen — Full Stack Engineer">
+  <section class="hero">
+    <h1>Nicholas Maassen</h1>
+    <p class="tagline">
+      Full-stack engineer. Shipping software for users' actual workflows.
+    </p>
+    <p class="lede">
+      2.5 years and 9 client products at <a href="https://avodahsoftware.com">Avodah Software</a>
+      across payments, scheduling, AI-assisted healthcare, and multi-tenant integrations.
+      Strong on translating ambiguous client asks into scoped launches, production hardening,
+      and prompt engineering for agentic AI.
+    </p>
+  </section>
+
+  <section class="selected-work">
+    <h2>Selected Work</h2>
+
+    <article class="project">
+      <header class="project-header">
+        <h3><a href="https://cube-merge.pages.dev/">Cube Merge</a></h3>
+        <span class="project-meta">Lighthouse 100/100 · 307 KB</span>
+      </header>
+      <p class="project-stack">TypeScript · React · Firestore · Cloudflare Pages</p>
+      <p>
+        Real-time review tool for cube-building hobbyists. Immutable change log lets any anonymous user
+        branch and re-share from any prior point, so identity-based trust is unnecessary.
+        Six change types (swap / add / remove / keep / reject / decline), threaded @-mention comments,
+        virtualized rendering for 500+ cards, CubeCobra-compatible export.
+      </p>
+      <p class="project-links">
+        <a href="https://cube-merge.pages.dev/">Live</a>
+        ·
+        <a href="https://github.com/NMaass/cube-merge">Code</a>
+      </p>
+    </article>
+
+    <article class="project">
+      <header class="project-header">
+        <h3><a href="https://nmaass.github.io/trait-ranker/">Trait Ranker</a></h3>
+        <span class="project-meta">Lighthouse 99/100 · ~50 users</span>
+      </header>
+      <p class="project-stack">TypeScript · React · Firebase</p>
+      <p>
+        Drag-and-drop pairwise ranking on desktop and mobile. Heap-sort surfaces a top-7,
+        then merge-sort produces the final order, minimizing the comparisons users have to make.
+        Includes a social guessing loop where friends try to predict your top traits before you reveal them.
+        Anonymous Firebase sessions with exportable results.
+      </p>
+      <p class="project-links">
+        <a href="https://nmaass.github.io/trait-ranker/">Live</a>
+        ·
+        <a href="https://github.com/NMaass/trait-ranker">Code</a>
+      </p>
+    </article>
+
+    <article class="project">
+      <header class="project-header">
+        <h3>Avodah Software (2024–present)</h3>
+        <span class="project-meta">Production · NDA-safe summary</span>
+      </header>
+      <p class="project-stack">TypeScript · React · Cloudflare Workers · Stripe Connect · Microsoft Graph · Deepgram</p>
+      <p>
+        Built and shipped 9 client products as a full-stack engineer. Highlights: a closed-loop transaction
+        service for a B2B used-car wholesale marketplace; a fully automated booking-to-report pipeline
+        integrating 7 vendors with parallel-agent LLM review; a Cloudflare Workers SaaS-marketplace plugin
+        scaffolded to production in 2 days. Each shipped with production Lighthouse 95–100/100.
+      </p>
+      <p class="project-links">
+        <a href={`${base}/resume.pdf`}>Resume (PDF)</a>
+      </p>
+    </article>
+  </section>
+
+  <section class="recent-writing">
+    <h2>Writing</h2>
+    <ul class="writing-list">
+      <li>
+        <a href={`${base}/writing/when-to-stop-architecting`}>When to Stop Architecting</a>
+        <span class="writing-date">May 2026</span>
+      </li>
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding: var(--space-2xl) 0 var(--space-xl);
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+
+  .hero h1 {
+    font-size: var(--text-4xl);
+    margin-bottom: var(--space-sm);
+  }
+
+  .tagline {
+    font-size: var(--text-xl);
+    color: var(--color-accent);
+    font-style: italic;
+    margin-bottom: var(--space-md);
+    line-height: var(--leading-snug);
+  }
+
+  .lede {
+    max-width: var(--max-width-prose);
+    color: var(--color-text);
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+  }
+
+  .selected-work {
+    padding: var(--space-2xl) 0;
+  }
+
+  .selected-work h2,
+  .recent-writing h2 {
+    margin-bottom: var(--space-xl);
+    color: var(--color-text-muted);
+    font-weight: 500;
+    font-size: var(--text-base);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .project {
+    padding: var(--space-lg) 0;
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+
+  .project:last-of-type {
+    border-bottom: none;
+  }
+
+  .project-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xs);
+  }
+
+  .project-header h3 {
+    margin: 0;
+    font-size: var(--text-xl);
+  }
+
+  .project-header h3 a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .project-header h3 a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-color: var(--color-highlight);
+  }
+
+  .project-meta {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-highlight);
+    letter-spacing: 0.02em;
+  }
+
+  .project-stack {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin-bottom: var(--space-sm);
+  }
+
+  .project p {
+    max-width: var(--max-width-prose);
+    line-height: var(--leading-relaxed);
+  }
+
+  .project-links {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-top: var(--space-sm);
+    margin-bottom: 0;
+  }
+
+  .recent-writing {
+    padding: var(--space-2xl) 0;
+    border-top: 1px solid var(--color-border-soft);
+  }
+
+  .writing-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .writing-list li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding: var(--space-sm) 0;
+  }
+
+  .writing-list a {
+    font-size: var(--text-lg);
+  }
+
+  .writing-date {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+</style>

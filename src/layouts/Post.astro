@@ -1,0 +1,93 @@
+---
+import Base from './Base.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  date: string;
+}
+
+const { title, description, date } = Astro.props;
+const formatted = new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<Base title={`${title} — Nicholas Maassen`} description={description}>
+  <article class="post">
+    <header class="post-header">
+      <h1>{title}</h1>
+      <time datetime={date}>{formatted}</time>
+    </header>
+    <div class="post-body">
+      <slot />
+    </div>
+  </article>
+</Base>
+
+<style>
+  .post {
+    max-width: var(--max-width-prose);
+    margin: 0 auto;
+    padding: var(--space-2xl) 0;
+  }
+
+  .post-header {
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+
+  .post-header h1 {
+    font-size: var(--text-4xl);
+    line-height: var(--leading-tight);
+    margin-bottom: var(--space-md);
+    letter-spacing: -0.01em;
+  }
+
+  .post-header time {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .post-body :global(p) {
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-md);
+  }
+
+  .post-body :global(h2) {
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-md);
+    font-size: var(--text-2xl);
+  }
+
+  .post-body :global(h3) {
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-sm);
+    font-size: var(--text-xl);
+  }
+
+  .post-body :global(blockquote) {
+    margin: var(--space-xl) 0;
+    font-size: var(--text-lg);
+  }
+
+  .post-body :global(ul),
+  .post-body :global(ol) {
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-md);
+  }
+
+  .post-body :global(li) {
+    margin-bottom: var(--space-sm);
+  }
+
+  .post-body :global(pre) {
+    margin: var(--space-lg) 0;
+  }
+</style>
