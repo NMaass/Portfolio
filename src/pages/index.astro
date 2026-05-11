@@ -220,7 +220,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     width: 100%;
     height: auto;
     border-radius: var(--radius-sm);
-    box-shadow: 0 2px 12px var(--color-shadow);
+    /* Sharp 1px line + soft shadow so the screenshot edge is always visible,
+       even when the app's own palette is close to the matt color. */
+    border: 1px solid var(--color-border);
+    box-shadow: 0 6px 20px var(--color-shadow);
   }
 
   /* Desktop + mobile pair: desktop fills the row, mobile sits at the right edge */
@@ -234,7 +237,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   .project-media-pair img {
     display: block;
     border-radius: var(--radius-sm);
-    box-shadow: 0 2px 12px var(--color-shadow);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 6px 20px var(--color-shadow);
   }
 
   .project-media-desktop {
