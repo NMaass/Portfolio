@@ -123,6 +123,28 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </article>
   </section>
 
+  <section class="side-projects">
+    <h2>Side projects</h2>
+    <ul class="side-list">
+      <li class="side-row">
+        <a class="side-title" href="https://pizza-research.nmaass.dev">Pizza Research</a>
+        <p class="side-description">
+          A discovery app for finding pizza you'll actually like. Cloudflare Worker
+          serving a Vite client, Durable Objects for combo tracking, KV for the topping taxonomy.
+        </p>
+        <p class="side-stack">TypeScript · React · Cloudflare Workers · Durable Objects · KV</p>
+      </li>
+      <li class="side-row">
+        <a class="side-title" href="https://shape-research.nmaass.dev">Shape Research</a>
+        <p class="side-description">
+          A small playground for thinking about shapes. Cloudflare Worker
+          with a Shape Registry Durable Object and a Vite client.
+        </p>
+        <p class="side-stack">TypeScript · React · Cloudflare Workers · Durable Objects · KV</p>
+      </li>
+    </ul>
+  </section>
+
   <section class="recent-writing">
     <h2>Writing</h2>
     <ul class="writing-list">
@@ -182,6 +204,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   }
 
   .selected-work h2,
+  .side-projects h2,
   .recent-writing h2 {
     margin-bottom: var(--space-xl);
     color: var(--color-text-muted);
@@ -189,6 +212,57 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     font-size: var(--text-base);
     text-transform: uppercase;
     letter-spacing: 0.08em;
+  }
+
+  .side-projects {
+    padding: var(--space-2xl) 0;
+    border-top: 1px solid var(--color-border-soft);
+  }
+
+  .side-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+  }
+
+  @media (max-width: 720px) {
+    .side-list { grid-template-columns: 1fr; }
+  }
+
+  .side-row {
+    padding: 0;
+  }
+
+  .side-title {
+    display: block;
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--color-text);
+    text-decoration: none;
+    margin-bottom: var(--space-sm);
+  }
+
+  .side-title:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-color: var(--color-highlight-text);
+  }
+
+  .side-description {
+    color: var(--color-text);
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-sm);
+  }
+
+  .side-stack {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin: 0;
   }
 
   .project {
