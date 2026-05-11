@@ -7,11 +7,19 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node scripts/generate-og.mjs",
     "build": "astro build",
     "preview": "astro preview",
+    "og": "node scripts/generate-og.mjs",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.3.1"
+    "@astrojs/rss": "^4.0.18",
+    "astro": "^6.3.1",
+    "astro-og-canvas": "^0.11.1",
+    "reading-time": "^1.5.0"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
   }
 }

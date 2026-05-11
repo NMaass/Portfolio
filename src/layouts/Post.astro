@@ -1,5 +1,6 @@
 ---
 import Base from './Base.astro';
+import readingTime from 'reading-time';
 
 interface Frontmatter {
   title: string;
@@ -12,23 +13,79 @@ interface Props {
 }
 
 const { title, description, date } = Astro.props.frontmatter;
+
 const formatted = new Date(date).toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
   timeZone: 'UTC',
 });
+
+const pathname = Astro.url.pathname.replace(/\/$/, '');
+const slug = pathname.split('/').pop() || '';
+
+const ogImage = '/og/' + slug + '.png';
+
+// Estimate reading time from the rendered HTML inside the slot.
+// Default if we can't read it.
+let readText = '5 min read';
+try {
+  const html = await Astro.slots.render('default');
+  const text = String(html).replace(/<[^>]+>/g, ' ');
+  if (text.length > 0) {
+    const stats = readingTime(text);
+    const mins = Math.max(1, Math.round(stats.minutes));
+    readText = mins + ' min read';
+  }
+} catch (e) {
+  // keep default
+}
+
+const emailSubject = encodeURIComponent('Re: ' + title);
+const replyByEmail = 'mailto:nick@nmaass.dev?subject=' + emailSubject;
+const linkedinShare =
+  'https://www.linkedin.com/sharing/share-offsite/?url=' +
+  encodeURIComponent('https://nmaass.dev' + pathname);
 ---
 
-<Base title={`${title} — Nicholas Maassen`} description={description}>
+<Base
+  title={`${title} — Nicholas Maassen`}
+  description={description}
+  ogImage={ogImage}
+  ogType="article"
+  publishedDate={date}
+>
   <article class="post">
     <header class="post-header">
       <h1>{title}</h1>
-      <time datetime={date}>{formatted}</time>
+      <p class="post-meta">
+        <time datetime={date}>{formatted}</time>
+        <span class="post-meta-sep" aria-hidden="true">·</span>
+        <span class="post-read-time">{readText}</span>
+      </p>
     </header>
     <div class="post-body">
       <slot />
     </div>
+    <footer class="post-footer">
+      <p class="post-footer-lede">
+        Thanks for reading.
+      </p>
+      <ul class="post-footer-actions">
+        <li>
+          <a href={replyByEmail}>Reply by email</a>
+        </li>
+        <li>
+          <a href={linkedinShare} target="_blank" rel="noopener">Share on LinkedIn</a>
+        </li>
+        <li>
+          <a href="/rss.xml">Subscribe via RSS</a>
+        </li>
+      </ul>
+      <p class="post-footer-more">
+        More writing on the <a href="/writing">index</a>.
+      </p>
+    </footer>
   </article>
 </Base>
 
@@ -52,12 +109,20 @@ const formatted = new Date(date).toLocaleDateString('en-US', {
     letter-spacing: -0.01em;
   }
 
-  .post-header time {
+  .post-meta {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--color-text-muted);
     letter-spacing: 0.04em;
     text-transform: uppercase;
+  }
+
+  .post-meta-sep {
+    opacity: 0.6;
   }
 
   .post-body :global(p) {
@@ -94,5 +159,40 @@ const formatted = new Date(date).toLocaleDateString('en-US', {
 
   .post-body :global(pre) {
     margin: var(--space-lg) 0;
+  }
+
+  .post-footer {
+    margin-top: var(--space-3xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--color-border-soft);
+  }
+
+  .post-footer-lede {
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin-bottom: var(--space-md);
+  }
+
+  .post-footer-actions {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-lg) 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm) var(--space-lg);
+  }
+
+  .post-footer-actions li {
+    margin: 0;
+  }
+
+  .post-footer-actions a {
+    font-size: var(--text-sm);
+  }
+
+  .post-footer-more {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    margin: 0;
   }
 </style>
