@@ -262,7 +262,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--color-bg-elevated), var(--color-code-bg));
+    /* solid bg (not gradient) so axe can compute contrast for the stat text */
+    background: var(--color-bg-elevated);
     padding: var(--space-2xl);
   }
 

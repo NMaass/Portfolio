@@ -121,8 +121,9 @@ const linkedinShare =
     text-transform: uppercase;
   }
 
+  /* no opacity: axe can't see through it for contrast; rely on muted color */
   .post-meta-sep {
-    opacity: 0.6;
+    color: var(--color-text-muted);
   }
 
   .post-body :global(p) {
