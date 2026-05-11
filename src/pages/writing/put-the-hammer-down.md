@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Post.astro
-title: Launching is letting go
-description: A memory bug, a worker service I almost built, and one line of Fly config. On the kind of problem where the boring answer is the senior one.
+title: Put the hammer down
+description: One swing pre-launch is worth a hundred post-launch.
 date: 2026-05-08
 ---
 

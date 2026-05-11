@@ -6,8 +6,9 @@ export default defineConfig({
   site: 'https://nmaass.dev',
   trailingSlash: 'ignore',
   redirects: {
-    // Permanent: post renamed 2026-05-08.
-    '/writing/when-to-stop-architecting': '/writing/launching-is-letting-go',
+    // Permanent: post renamed twice. Both old slugs point at the current one.
+    '/writing/when-to-stop-architecting': '/writing/put-the-hammer-down',
+    '/writing/launching-is-letting-go': '/writing/put-the-hammer-down',
   },
   build: {
     assets: 'assets',
