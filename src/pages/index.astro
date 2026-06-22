@@ -1,6 +1,33 @@
 ---
 import Base from '../layouts/Base.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const liveApps = [
+  {
+    name: 'Cube Merge',
+    url: 'https://cube-merge.nmaass.dev',
+    description: 'Real-time review tool for cube-building hobbyists. Branch and re-share from any point.',
+    stack: 'React · Firestore · Cloudflare Pages',
+  },
+  {
+    name: 'Trait Ranker',
+    url: 'https://trait-ranker.nmaass.dev',
+    description: 'Drag-and-drop pairwise ranking with heap-sort and a social guessing loop.',
+    stack: 'React · Firebase',
+  },
+  {
+    name: 'Pizza Research',
+    url: 'https://pizza-research.nmaass.dev',
+    description: 'A discovery app for finding pizza you\'ll actually like. Durable Objects for combo tracking.',
+    stack: 'React · Cloudflare Workers · Durable Objects',
+  },
+  {
+    name: 'Shape Research',
+    url: 'https://shape-research.nmaass.dev',
+    description: 'A small playground for thinking about shapes. Shape Registry Durable Object + Vite client.',
+    stack: 'React · Cloudflare Workers · Durable Objects',
+  },
+];
 ---
 
 <Base title="Nicholas Maassen — Full Stack Engineer">
@@ -23,44 +50,51 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </p>
   </section>
 
+  <section class="featured-writing">
+    <h2>Latest writing</h2>
+    <a class="writing-feature" href={`${base}/writing/flip-the-hammer-over`}>
+      <div class="writing-feature-body">
+        <h3>Flip the hammer over</h3>
+        <p class="writing-feature-desc">How I learned to write as little software as possible.</p>
+        <p class="writing-feature-meta">
+          <time datetime="2026-05-08">May 8, 2026</time>
+        </p>
+      </div>
+      <span class="writing-feature-cta" aria-hidden="true">Read&nbsp;&rarr;</span>
+    </a>
+  </section>
+
   <section class="selected-work">
     <h2>Selected Work</h2>
 
     <article class="project">
-      <a class="project-media project-media-pair" href="https://cube-merge.nmaass.dev" aria-label="Open Cube Merge">
+      <a class="project-media" href="https://cube-merge.nmaass.dev" aria-label="Open Cube Merge">
         <img
-          class="project-media-desktop"
           src={`${base}/projects/cube-merge.png`}
           alt="Cube Merge diff view on desktop: removals on the left, additions on the right, grouped by color."
           loading="lazy"
           width="1280"
           height="800"
         />
-        <img
-          class="project-media-mobile"
-          src={`${base}/projects/cube-merge-mobile.png`}
-          alt="Cube Merge mobile view: same diff, stacked layout."
-          loading="lazy"
-          width="375"
-          height="812"
-        />
       </a>
-      <header class="project-header">
-        <h3><a href="https://cube-merge.nmaass.dev">Cube Merge</a></h3>
-        <span class="project-meta">Lighthouse 100/100 · 307 KB</span>
-      </header>
-      <p class="project-stack">TypeScript · React · Firestore · Cloudflare Pages</p>
-      <p>
-        Real-time review tool for cube-building hobbyists. Immutable change log lets any anonymous user
-        branch and re-share from any prior point, so identity-based trust is unnecessary.
-        Six change types (swap / add / remove / keep / reject / decline), threaded @-mention comments,
-        virtualized rendering for 500+ cards, CubeCobra-compatible export.
-      </p>
-      <p class="project-links">
-        <a href="https://cube-merge.nmaass.dev">Live</a>
-        ·
-        <a href="https://github.com/NMaass/cube-merge">Code</a>
-      </p>
+      <div class="project-body">
+        <header class="project-header">
+          <h3><a href="https://cube-merge.nmaass.dev">Cube Merge</a></h3>
+          <span class="project-meta">Lighthouse 100/100 · 307 KB</span>
+        </header>
+        <p class="project-stack">TypeScript · React · Firestore · Cloudflare Pages</p>
+        <p>
+          Real-time review tool for cube-building hobbyists. Immutable change log lets any anonymous user
+          branch and re-share from any prior point, so identity-based trust is unnecessary.
+          Six change types (swap / add / remove / keep / reject / decline), threaded @-mention comments,
+          virtualized rendering for 500+ cards, CubeCobra-compatible export.
+        </p>
+        <p class="project-links">
+          <a href="https://cube-merge.nmaass.dev">Live</a>
+          ·
+          <a href="https://github.com/NMaass/cube-merge">Code</a>
+        </p>
+      </div>
     </article>
 
     <article class="project">
@@ -79,22 +113,24 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           <source src={`${base}/projects/trait-ranker.mp4`} type="video/mp4" />
         </video>
       </a>
-      <header class="project-header">
-        <h3><a href="https://trait-ranker.nmaass.dev">Trait Ranker</a></h3>
-        <span class="project-meta">Lighthouse 99/100 · ~50 users</span>
-      </header>
-      <p class="project-stack">TypeScript · React · Firebase</p>
-      <p>
-        Drag-and-drop pairwise ranking on desktop and mobile. Heap-sort surfaces a top-7,
-        then merge-sort produces the final order, minimizing the comparisons users have to make.
-        Includes a social guessing loop where friends try to predict your top traits before you reveal them.
-        Anonymous Firebase sessions with exportable results.
-      </p>
-      <p class="project-links">
-        <a href="https://trait-ranker.nmaass.dev">Live</a>
-        ·
-        <a href="https://github.com/NMaass/trait-ranker">Code</a>
-      </p>
+      <div class="project-body">
+        <header class="project-header">
+          <h3><a href="https://trait-ranker.nmaass.dev">Trait Ranker</a></h3>
+          <span class="project-meta">Lighthouse 99/100 · ~50 users</span>
+        </header>
+        <p class="project-stack">TypeScript · React · Firebase</p>
+        <p>
+          Drag-and-drop pairwise ranking on desktop and mobile. Heap-sort surfaces a top-7,
+          then merge-sort produces the final order, minimizing the comparisons users have to make.
+          Includes a social guessing loop where friends try to predict your top traits before you reveal them.
+          Anonymous Firebase sessions with exportable results.
+        </p>
+        <p class="project-links">
+          <a href="https://trait-ranker.nmaass.dev">Live</a>
+          ·
+          <a href="https://github.com/NMaass/trait-ranker">Code</a>
+        </p>
+      </div>
     </article>
 
     <article class="project">
@@ -105,56 +141,59 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           <div class="stat"><span class="stat-num">100</span><span class="stat-label">Production Lighthouse</span></div>
         </div>
       </div>
-      <header class="project-header">
-        <h3>Avodah Software (Feb 2024–present)</h3>
-        <span class="project-meta">Contract · NDA-safe summary</span>
-      </header>
-      <p class="project-stack">TypeScript · React · Bun · Fastify · Cloudflare Workers · Supabase · Stripe Connect · Microsoft Graph · Deepgram</p>
-      <p>
-        Worked on 9 client products at Avodah since Feb 2024 — led 4 end-to-end and contributed substantial
-        slices to 5 more. Highlights: an AI-assisted healthcare workflow with streaming transcription,
-        Microsoft Bookings/Teams integration, and parallel-agent LLM review; a GoHighLevel + Cloudflare
-        Workers scheduling integration; a B2B used-car wholesale marketplace with Stripe Connect ACH
-        escrow, FedEx integration, and an invite/onboarding flow.
-      </p>
-      <p class="project-links">
-        <a href={`${base}/resume.pdf`}>Resume (PDF)</a>
-      </p>
+      <div class="project-body">
+        <header class="project-header">
+          <h3>Avodah Software (Feb 2024–present)</h3>
+          <span class="project-meta">Contract · NDA-safe summary</span>
+        </header>
+        <p class="project-stack">TypeScript · React · Bun · Fastify · Cloudflare Workers · Supabase · Stripe Connect · Microsoft Graph · Deepgram</p>
+        <p>
+          Worked on 9 client products at Avodah since Feb 2024 — led 4 end-to-end and contributed substantial
+          slices to 5 more. Highlights: an AI-assisted healthcare workflow with streaming transcription,
+          Microsoft Bookings/Teams integration, and parallel-agent LLM review; a GoHighLevel + Cloudflare
+          Workers scheduling integration; a B2B used-car wholesale marketplace with Stripe Connect ACH
+          escrow, FedEx integration, and an invite/onboarding flow.
+        </p>
+        <p class="project-links">
+          <a href={`${base}/resume.pdf`}>Resume (PDF)</a>
+        </p>
+      </div>
     </article>
   </section>
 
-  <section class="side-projects">
-    <h2>Side projects</h2>
-    <ul class="side-list">
-      <li class="side-row">
-        <a class="side-title" href="https://pizza-research.nmaass.dev">Pizza Research</a>
-        <p class="side-description">
-          A discovery app for finding pizza you'll actually like. Cloudflare Worker
-          serving a Vite client, Durable Objects for combo tracking, KV for the topping taxonomy.
-        </p>
-        <p class="side-stack">TypeScript · React · Cloudflare Workers · Durable Objects · KV</p>
-      </li>
-      <li class="side-row">
-        <a class="side-title" href="https://shape-research.nmaass.dev">Shape Research</a>
-        <p class="side-description">
-          A small playground for thinking about shapes. Cloudflare Worker
-          with a Shape Registry Durable Object and a Vite client.
-        </p>
-        <p class="side-stack">TypeScript · React · Cloudflare Workers · Durable Objects · KV</p>
-      </li>
-    </ul>
-  </section>
-
-  <section class="recent-writing">
-    <h2>Writing</h2>
-    <ul class="writing-list">
-      <li>
-        <a href={`${base}/writing/flip-the-hammer-over`}>Flip the hammer over</a>
-        <span class="writing-date">May 2026</span>
-      </li>
-    </ul>
+  <section class="live-apps">
+    <h2>Try them live</h2>
+    <div class="carousel-wrapper">
+      <button class="carousel-nav" data-dir="prev" type="button" aria-label="Scroll left">&lsaquo;</button>
+      <div class="carousel" id="app-carousel" role="list" aria-label="Hosted applications">
+        {liveApps.map((app) => (
+          <a class="carousel-card" href={app.url} role="listitem" target="_blank" rel="noopener">
+            <h3>{app.name}</h3>
+            <p class="carousel-desc">{app.description}</p>
+            <p class="carousel-stack">{app.stack}</p>
+            <span class="carousel-url">{app.url.replace('https://', '')}&nbsp;&rarr;</span>
+          </a>
+        ))}
+      </div>
+      <button class="carousel-nav" data-dir="next" type="button" aria-label="Scroll right">&rsaquo;</button>
+    </div>
   </section>
 </Base>
+
+<script>
+  const carousel = document.getElementById('app-carousel');
+  if (carousel) {
+    const wrapper = carousel.closest('.carousel-wrapper');
+    const buttons = wrapper?.querySelectorAll('.carousel-nav') ?? [];
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const dir = (btn as HTMLButtonElement).dataset.dir === 'next' ? 1 : -1;
+        const amount = carousel.clientWidth * 0.75;
+        carousel.scrollBy({ left: amount * dir, behavior: 'smooth' });
+      });
+    });
+  }
+</script>
 
 <style>
   .hero {
@@ -199,14 +238,17 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     margin-right: var(--space-sm);
   }
 
-  .selected-work {
-    padding: var(--space-2xl) 0;
+  /* ─── Featured writing ──────────────────────────────────── */
+
+  .featured-writing {
+    padding: var(--space-xl) 0;
+    border-bottom: 1px solid var(--color-border-soft);
   }
 
+  .featured-writing h2,
   .selected-work h2,
-  .side-projects h2,
-  .recent-writing h2 {
-    margin-bottom: var(--space-xl);
+  .live-apps h2 {
+    margin-bottom: var(--space-lg);
     color: var(--color-text-muted);
     font-weight: 500;
     font-size: var(--text-base);
@@ -214,74 +256,107 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     letter-spacing: 0.08em;
   }
 
-  .side-projects {
-    padding: var(--space-2xl) 0;
-    border-top: 1px solid var(--color-border-soft);
+  .writing-feature {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    padding: var(--space-xl) var(--space-lg);
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border-soft);
+    border-left: 3px solid var(--color-accent);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: border-color 0.2s ease;
   }
 
-  .side-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-xl);
-  }
-
-  @media (max-width: 720px) {
-    .side-list { grid-template-columns: 1fr; }
-  }
-
-  .side-row {
-    padding: 0;
-  }
-
-  .side-title {
-    display: block;
-    font-size: var(--text-lg);
-    font-weight: 600;
+  .writing-feature:hover {
+    border-color: var(--color-accent);
     color: var(--color-text);
     text-decoration: none;
-    margin-bottom: var(--space-sm);
   }
 
-  .side-title:hover {
-    color: var(--color-accent);
-    text-decoration: underline;
-    text-decoration-color: var(--color-highlight-text);
+  .writing-feature-body {
+    flex: 1;
+    min-width: 0;
   }
 
-  .side-description {
+  .writing-feature h3 {
+    margin: 0 0 var(--space-xs) 0;
+    font-size: var(--text-xl);
     color: var(--color-text);
+    transition: color 0.15s ease;
+  }
+
+  .writing-feature:hover h3 {
+    color: var(--color-accent);
+  }
+
+  .writing-feature-desc {
+    color: var(--color-text-muted);
     font-size: var(--text-sm);
     line-height: var(--leading-relaxed);
-    margin-bottom: var(--space-sm);
+    margin: 0 0 var(--space-xs) 0;
   }
 
-  .side-stack {
+  .writing-feature-meta {
+    font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--color-text-muted);
-    font-style: italic;
+    letter-spacing: 0.02em;
     margin: 0;
+  }
+
+  .writing-feature-cta {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-accent);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 600px) {
+    .writing-feature {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+  }
+
+  /* ─── Selected work (two-column) ────────────────────────── */
+
+  .selected-work {
+    padding: var(--space-xl) 0;
+    border-bottom: 1px solid var(--color-border-soft);
   }
 
   .project {
-    padding: var(--space-2xl) 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-xl);
+    padding: var(--space-xl) 0;
     border-bottom: 1px solid var(--color-border-soft);
+    align-items: start;
   }
 
   .project:last-of-type {
     border-bottom: none;
   }
 
+  @media (max-width: 720px) {
+    .project {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+  }
+
   /* Matt around every screenshot: paper-tone surround so the app's own palette
-     never butts directly against the site palette. Same treatment for desktop,
-     mobile pair, GIF, or stat block. */
+     never butts directly against the site palette. */
   .project-media {
     display: block;
     width: 100%;
-    margin-bottom: var(--space-lg);
-    padding: var(--space-lg);
+    padding: var(--space-md);
     border-radius: var(--radius-md);
     background: var(--color-bg-elevated);
     border: 1px solid var(--color-border-soft);
@@ -301,61 +376,23 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     width: 100%;
     height: auto;
     border-radius: var(--radius-sm);
-    /* Sharp 1px line + soft shadow so the screenshot edge is always visible,
-       even when the app's own palette is close to the matt color. */
     border: 1px solid var(--color-border);
     box-shadow: 0 6px 20px var(--color-shadow);
-  }
-
-  /* Desktop + mobile pair: desktop fills the row, mobile sits at the right edge */
-  .project-media-pair {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: var(--space-md);
-    align-items: end;
-  }
-
-  .project-media-pair img {
-    display: block;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--color-border);
-    box-shadow: 0 6px 20px var(--color-shadow);
-  }
-
-  .project-media-desktop {
-    width: 100%;
-    height: auto;
-  }
-
-  .project-media-mobile {
-    width: 160px;
-    height: auto;
-  }
-
-  @media (max-width: 600px) {
-    .project-media-pair {
-      grid-template-columns: 1fr;
-      justify-items: center;
-    }
-    .project-media-mobile {
-      width: 50%;
-    }
   }
 
   .project-media-stat {
-    aspect-ratio: 16 / 7;
+    aspect-ratio: 16 / 9;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* solid bg (not gradient) so axe can compute contrast for the stat text */
     background: var(--color-bg-elevated);
-    padding: var(--space-2xl);
+    padding: var(--space-lg);
   }
 
   .stat-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-2xl);
+    gap: var(--space-lg);
     text-align: center;
   }
 
@@ -367,7 +404,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   .stat-num {
     font-family: var(--font-serif);
-    font-size: var(--text-4xl);
+    font-size: var(--text-3xl);
     font-weight: 600;
     color: var(--color-accent);
     line-height: 1;
@@ -385,6 +422,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   @media (max-width: 600px) {
     .stat-grid { gap: var(--space-md); }
     .stat-num { font-size: var(--text-2xl); }
+  }
+
+  .project-body {
+    min-width: 0;
   }
 
   .project-header {
@@ -426,8 +467,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     margin-bottom: var(--space-sm);
   }
 
-  .project p {
-    max-width: var(--max-width-prose);
+  .project-body p {
     line-height: var(--leading-relaxed);
   }
 
@@ -438,32 +478,123 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     margin-bottom: 0;
   }
 
-  .recent-writing {
-    padding: var(--space-2xl) 0;
-    border-top: 1px solid var(--color-border-soft);
+  /* ─── Live apps carousel ────────────────────────────────── */
+
+  .live-apps {
+    padding: var(--space-xl) 0 var(--space-2xl);
   }
 
-  .writing-list {
-    list-style: none;
-    padding: 0;
+  .carousel-wrapper {
+    display: flex;
+    align-items: stretch;
+    gap: var(--space-sm);
+  }
+
+  .carousel {
+    flex: 1;
+    display: flex;
+    gap: var(--space-md);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+    padding-bottom: var(--space-xs);
+  }
+
+  .carousel::-webkit-scrollbar {
+    height: 4px;
+  }
+  .carousel::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .carousel::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 2px;
+  }
+
+  .carousel-card {
+    scroll-snap-align: start;
+    flex: 0 0 16rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-lg);
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: border-color 0.2s ease;
+  }
+
+  .carousel-card:hover {
+    border-color: var(--color-accent);
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .carousel-card h3 {
+    margin: 0;
+    font-size: var(--text-lg);
+    color: var(--color-text);
+    transition: color 0.15s ease;
+  }
+
+  .carousel-card:hover h3 {
+    color: var(--color-accent);
+  }
+
+  .carousel-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+    flex: 1;
+  }
+
+  .carousel-stack {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    font-style: italic;
     margin: 0;
   }
 
-  .writing-list li {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: var(--space-md);
-    padding: var(--space-sm) 0;
-  }
-
-  .writing-list a {
-    font-size: var(--text-lg);
-  }
-
-  .writing-date {
+  .carousel-url {
     font-family: var(--font-mono);
     font-size: var(--text-xs);
+    color: var(--color-accent);
+    letter-spacing: 0.02em;
+  }
+
+  .carousel-nav {
+    flex-shrink: 0;
+    align-self: center;
+    width: 36px;
+    height: 36px;
+    min-height: 36px;
+    min-width: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-elevated);
     color: var(--color-text-muted);
+    cursor: pointer;
+    font-size: 1.25rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+  }
+
+  .carousel-nav:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 600px) {
+    .carousel-nav {
+      display: none;
+    }
   }
 </style>
