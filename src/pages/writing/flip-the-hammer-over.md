@@ -7,7 +7,7 @@ date: 2026-05-08
 
 My job is primarily solving problems with software solutions, but one problem prompted my lead to tell me to close my IDE.
 
-The project was a small client prototype with an AI media pipeline: a user uploaded an MP4, FFmpeg stripped the audio in the browser through WebAssembly, Deepgram transcribed it, and the transcript fanned out to six LLM calls through OpenRouter, returning an AI-assisted analysis.
+The project was a small client prototype with an AI media pipeline: a user uploaded an MP4, FFmpeg.wasm stripped the audio in the browser, Deepgram transcribed it, and the transcript fanned out to six LLM calls through OpenRouter, returning an AI-assisted analysis.
 
 I set up the Fly machine using my lead's suggestions on what to provision to start, ran the basic math to confirm the specs made sense, and tested it. Nothing flagged, and we were well within the resources I'd expected to need, so I moved on with the prototype.
 
@@ -15,7 +15,7 @@ I set up the Fly machine using my lead's suggestions on what to provision to sta
 
 The crash came at the perfect time. My lead is a big proponent of failing fast, and this was failing faster than I'd intended. I'd tested with my own data and nothing had flagged. But the crash came from a real input: the client sent a demo file with an actual video attached, and the machine ran out of memory.
 
-Claude had not implemented the spec I'd laid out, and my quick pass over the code hadn't caught how far it had drifted. It worked on my test MP4, which was much smaller, so nothing surfaced until a real file hit it. Several things had to change. The client-side FFmpeg step was in the project but never wired up, so the server received the entire MP4 instead of a stripped-down MP3. The server then buffered that whole file into memory instead of streaming it to Deepgram, and a second copy doubled the footprint. The model fan-out rebuilt the entire request payload for all six calls, instead of serializing the two prompts once and reusing each across the three models. I fixed each of these in code.
+Claude had not implemented the spec I'd laid out, and my quick pass over the code hadn't caught how far it had drifted. It worked on my test MP4, which was much smaller, so nothing surfaced until a real file hit it. Several things had to change. The client-side FFmpeg step was in the project but never wired up, so the server received the entire MP4 instead of the extracted M4A audio. The server then buffered that whole file into memory instead of streaming it to Deepgram, and a second copy doubled the footprint. The model fan-out rebuilt the entire request payload for all six calls, instead of serializing the two prompts once and reusing each across the three models. I fixed each of these in code.
 
 My lead had been right about how much memory the machine needed. What we didn't have was any strategy for concurrent requests. This was a simple proof-of-concept pipeline, and I'd been trusting his sizing without thinking through what actually needed to be held in memory, or when. Two requests arriving close together would each hold a full payload, and I hadn't realized how tight the margins on the machine's memory really were.
 
