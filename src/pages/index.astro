@@ -43,100 +43,32 @@ const liveApps = [
       Full-stack engineer building workflow-heavy software.
     </p>
     <p class="lede">
-      I work across product scoping, UI, backend, vendor APIs, infrastructure, demos, and
-      production hardening. Recently: scheduling sync, payment workflows, AI-assisted care
-      reports, CRM dashboards, and integration-heavy admin tools.
+      I work across product scoping, UI, backend, vendor APIs, infrastructure, and
+      production hardening — shipping integration-heavy software for real users.
     </p>
-    <p class="hero-now">
-      <span class="hero-now-label">Looking for</span>
-      Product engineering, implementation engineering, customer engineering, or
-      forward-deployed engineering roles at teams that care about useful software, clear
-      writing, and shipping to real users.
+    <p class="hero-roles">
+      <span class="hero-now-label">Roles</span>
+      Product Engineer · Implementation Engineer · Forward-Deployed Engineer
+    </p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="mailto:nick@nmaass.dev">Email me</a>
+      <a class="btn btn-secondary" href={`${base}/resume`}>View resume</a>
+    </div>
+  </section>
+
+  <section class="proof-strip" aria-label="Recent work and stack">
+    <p class="proof-line">
+      <span class="proof-label">Recent work</span>
+      scheduling sync · ACH/payment workflows · AI-assisted care reports · CRM dashboards
+    </p>
+    <p class="proof-line">
+      <span class="proof-label">Stack</span>
+      TypeScript · React · Cloudflare Workers/D1 · Postgres · Stripe · Microsoft Graph
     </p>
   </section>
 
-  <section class="featured-writing">
-    <h2>Latest writing</h2>
-    <a class="writing-feature" href={`${base}/writing/flip-the-hammer-over`}>
-      <div class="writing-feature-body">
-        <h3>Flip the hammer over</h3>
-        <p class="writing-feature-desc">How I learned to write as little software as possible.</p>
-        <p class="writing-feature-meta">
-          <time datetime="2026-05-08">May 8, 2026</time>
-        </p>
-      </div>
-      <span class="writing-feature-cta" aria-hidden="true">Read&nbsp;&rarr;</span>
-    </a>
-  </section>
-
-  <section class="selected-work">
+  <section class="selected-work" id="work">
     <h2>Selected Work</h2>
-
-    <article class="project">
-      <a class="project-media" href="https://cube-merge.nmaass.dev" aria-label="Open Cube Merge">
-        <img
-          src={`${base}/projects/cube-merge.png`}
-          alt="Cube Merge diff view on desktop: removals on the left, additions on the right, grouped by color."
-          loading="lazy"
-          width="1280"
-          height="800"
-        />
-      </a>
-      <div class="project-body">
-        <header class="project-header">
-          <h3><a href="https://cube-merge.nmaass.dev">Cube Merge</a></h3>
-          <span class="project-meta">Lighthouse 100/100 · 307 KB</span>
-        </header>
-        <p class="project-stack">TypeScript · React · Firestore · Cloudflare Pages</p>
-        <p>
-          Real-time review tool for cube-building hobbyists. Immutable change log lets any anonymous user
-          branch and re-share from any prior point, so identity-based trust is unnecessary.
-          Six change types (swap / add / remove / keep / reject / decline), threaded @-mention comments,
-          virtualized rendering for 500+ cards, CubeCobra-compatible export.
-        </p>
-        <p class="project-links">
-          <a href="https://cube-merge.nmaass.dev">Live</a>
-          ·
-          <a href="https://github.com/NMaass/cube-merge">Code</a>
-        </p>
-      </div>
-    </article>
-
-    <article class="project">
-      <a class="project-media" href="https://trait-ranker.nmaass.dev" aria-label="Open Trait Ranker — drag-and-drop pairwise ranking demo">
-        <video
-          autoplay
-          loop
-          muted
-          playsinline
-          preload="metadata"
-          width="1892"
-          height="912"
-          aria-label="Trait Ranker desktop drag-and-drop interaction"
-        >
-          <source src={`${base}/projects/trait-ranker.webm`} type="video/webm" />
-          <source src={`${base}/projects/trait-ranker.mp4`} type="video/mp4" />
-        </video>
-      </a>
-      <div class="project-body">
-        <header class="project-header">
-          <h3><a href="https://trait-ranker.nmaass.dev">Trait Ranker</a></h3>
-          <span class="project-meta">Lighthouse 99/100 · ~50 users</span>
-        </header>
-        <p class="project-stack">TypeScript · React · Firebase</p>
-        <p>
-          Drag-and-drop pairwise ranking on desktop and mobile. Heap-sort surfaces a top-7,
-          then merge-sort produces the final order, minimizing the comparisons users have to make.
-          Includes a social guessing loop where friends try to predict your top traits before you reveal them.
-          Anonymous Firebase sessions with exportable results.
-        </p>
-        <p class="project-links">
-          <a href="https://trait-ranker.nmaass.dev">Live</a>
-          ·
-          <a href="https://github.com/NMaass/trait-ranker">Code</a>
-        </p>
-      </div>
-    </article>
 
     <article class="project project-nda">
       <div class="project-media project-media-stack" aria-hidden="true">
@@ -154,12 +86,16 @@ const liveApps = [
           <h3>Scheduling sync for pregnancy centers</h3>
           <span class="project-meta">Client work · NDA-safe</span>
         </header>
-        <p class="project-stack">Cloudflare Workers · D1 · Hono · React · Clerk · Sentry</p>
-        <p>
-          GoHighLevel/LifeLead to CoolFocus integration with reconciliation jobs, lifecycle
-          mapping, and encrypted credentials. Built the admin setup flow, demo automation,
-          and shipped production deployment.
-        </p>
+        <dl class="project-details">
+          <dt>Problem</dt>
+          <dd>Pregnancy centers needed appointment data synced between GoHighLevel/LifeLead and CoolFocus with reliable reconciliation.</dd>
+          <dt>Shipped</dt>
+          <dd>GoHighLevel/LifeLead to CoolFocus integration with reconciliation jobs, lifecycle mapping, encrypted credentials, admin setup flow, demo automation, and Sentry monitoring.</dd>
+          <dt>Result</dt>
+          <dd>Production deployment shipped and running.</dd>
+          <dt>Stack</dt>
+          <dd>Cloudflare Workers · D1 · Hono · React · Clerk · Sentry</dd>
+        </dl>
       </div>
     </article>
 
@@ -178,12 +114,16 @@ const liveApps = [
           <h3>B2B automotive marketplace</h3>
           <span class="project-meta">Client work · NDA-safe</span>
         </header>
-        <p class="project-stack">React · Supabase · Stripe Connect · Postmark · FedEx</p>
-        <p>
-          ACH checkout, title-verification payout gates, purchase-order states, invitation
-          flows, EIN validation, and RLS-backed permissions across a multi-tenant B2B
-          wholesale flow.
-        </p>
+        <dl class="project-details">
+          <dt>Problem</dt>
+          <dd>B2B wholesale used-car transactions needed payment, title verification, and multi-tenant access control.</dd>
+          <dt>Shipped</dt>
+          <dd>ACH checkout, webhook-driven payment status, title-verification payout gate, purchase-order states, invitation flows, EIN validation, and RLS-backed permissions.</dd>
+          <dt>Result</dt>
+          <dd>Multi-tenant B2B wholesale transaction flow delivered.</dd>
+          <dt>Stack</dt>
+          <dd>React · Supabase · Stripe Connect · Postmark · FedEx</dd>
+        </dl>
       </div>
     </article>
 
@@ -203,12 +143,16 @@ const liveApps = [
           <h3>AI-assisted care workflow</h3>
           <span class="project-meta">Client work · NDA-safe</span>
         </header>
-        <p class="project-stack">React · Bun · Microsoft Graph · Deepgram · OpenAI · Promptfoo</p>
-        <p>
-          Booking-to-report pipeline: transcription, LLM-generated reports, prompt/eval
-          tooling, and role-based review surfaces. Production auth and domain hardening for
-          a healthcare context.
-        </p>
+        <dl class="project-details">
+          <dt>Problem</dt>
+          <dd>Care providers needed to turn booking and recording data into structured reports with role-based review.</dd>
+          <dt>Shipped</dt>
+          <dd>Booking-to-report pipeline: transcription, LLM-generated reports, prompt/eval tooling, and role-based review surfaces.</dd>
+          <dt>Result</dt>
+          <dd>Production auth and domain hardening for a healthcare context.</dd>
+          <dt>Stack</dt>
+          <dd>React · Bun · Microsoft Graph · Deepgram · OpenAI · Promptfoo</dd>
+        </dl>
       </div>
     </article>
 
@@ -228,66 +172,148 @@ const liveApps = [
           <h3>Financial-planning dashboard</h3>
           <span class="project-meta">Client work · NDA-safe</span>
         </header>
-        <p class="project-stack">React · Bun · Fastify · Drizzle · Postgres · Redtail CRM</p>
-        <p>
-          Dashboard and data-review workflows with Redtail CRM sync. Sanitized local
-          fixtures, staging/live data posture, validation, sync logs, and operational
-          review UX for advisors.
+        <dl class="project-details">
+          <dt>Problem</dt>
+          <dd>Financial advisors needed CRM-synced dashboard workflows with data review and validation.</dd>
+          <dt>Shipped</dt>
+          <dd>Dashboard and data-review workflows with Redtail CRM sync, sanitized local fixtures, staging/live data posture, validation, sync logs, and operational review UX.</dd>
+          <dt>Result</dt>
+          <dd>Advisor-facing review workflows with full reconciliation sync and validation.</dd>
+          <dt>Stack</dt>
+          <dd>React · Bun · Fastify · Drizzle · Postgres · Redtail CRM</dd>
+        </dl>
+      </div>
+    </article>
+
+    <article class="project">
+      <a class="project-media" href="https://cube-merge.nmaass.dev" aria-label="Open Cube Merge">
+        <img
+          src={`${base}/projects/cube-merge.png`}
+          alt="Cube Merge diff view on desktop: removals on the left, additions on the right, grouped by color."
+          loading="lazy"
+          width="1280"
+          height="800"
+        />
+      </a>
+      <div class="project-body">
+        <header class="project-header">
+          <h3><a href="https://cube-merge.nmaass.dev">Cube Merge</a></h3>
+          <span class="project-meta">Side project</span>
+        </header>
+        <dl class="project-details">
+          <dt>Problem</dt>
+          <dd>Cube-building hobbyists needed to review and collaborate on changes without accounts or identity-based trust.</dd>
+          <dt>Shipped</dt>
+          <dd>Real-time review tool with immutable change log, anonymous branching from any prior point, six change types, threaded @-mention comments, virtualized rendering for 500+ cards, and CubeCobra-compatible export.</dd>
+          <dt>Result</dt>
+          <dd>Lighthouse 100/100 · 307 KB bundle.</dd>
+          <dt>Stack</dt>
+          <dd>TypeScript · React · Firestore · Cloudflare Pages</dd>
+        </dl>
+        <p class="project-links">
+          <a href="https://cube-merge.nmaass.dev">Live</a>
+          ·
+          <a href="https://github.com/NMaass/cube-merge">Code</a>
+        </p>
+      </div>
+    </article>
+
+    <article class="project">
+      <a class="project-media" href="https://trait-ranker.nmaass.dev" aria-label="Open Trait Ranker — drag-and-drop pairwise ranking demo">
+        <video
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="metadata"
+          poster={`${base}/projects/trait-ranker-poster.jpg`}
+          width="1892"
+          height="912"
+          aria-label="Trait Ranker desktop drag-and-drop interaction"
+        >
+          <source src={`${base}/projects/trait-ranker.webm`} type="video/webm" />
+          <source src={`${base}/projects/trait-ranker.mp4`} type="video/mp4" />
+        </video>
+      </a>
+      <div class="project-body">
+        <header class="project-header">
+          <h3><a href="https://trait-ranker.nmaass.dev">Trait Ranker</a></h3>
+          <span class="project-meta">Side project</span>
+        </header>
+        <dl class="project-details">
+          <dt>Problem</dt>
+          <dd>Ranking many traits by comparison is tedious; users need fewer decisions to reach a final order.</dd>
+          <dt>Shipped</dt>
+          <dd>Drag-and-drop pairwise ranking with heap-sort (top-7) then merge-sort (final order), social guessing loop, anonymous Firebase sessions, and exportable results.</dd>
+          <dt>Result</dt>
+          <dd>Lighthouse 99/100 · ~50 users.</dd>
+          <dt>Stack</dt>
+          <dd>TypeScript · React · Firebase</dd>
+        </dl>
+        <p class="project-links">
+          <a href="https://trait-ranker.nmaass.dev">Live</a>
+          ·
+          <a href="https://github.com/NMaass/trait-ranker">Code</a>
         </p>
       </div>
     </article>
   </section>
 
-  <section class="live-apps">
-    <h2>Try them live</h2>
-    <div class="carousel-wrapper">
-      <button class="carousel-nav" data-dir="prev" type="button" aria-label="Scroll left">&lsaquo;</button>
-      <div class="carousel" id="app-carousel" role="list" aria-label="Hosted applications">
-        {liveApps.map((app) => (
-          <a class="carousel-card" href={app.url} role="listitem" target="_blank" rel="noopener">
-            <h3>{app.name}</h3>
-            <p class="carousel-desc">{app.description}</p>
-            <p class="carousel-stack">{app.stack}</p>
-            <span class="carousel-url">{app.url.replace('https://', '')}&nbsp;&rarr;</span>
-          </a>
-        ))}
-      </div>
-      <button class="carousel-nav" data-dir="next" type="button" aria-label="Scroll right">&rsaquo;</button>
+  <section class="live-apps" id="demos">
+    <h2>Live demos</h2>
+    <div class="demo-grid">
+      {liveApps.map((app) => (
+        <a class="demo-card" href={app.url} target="_blank" rel="noopener">
+          <h3>{app.name}</h3>
+          <p class="demo-desc">{app.description}</p>
+          <p class="demo-stack">{app.stack}</p>
+          <span class="demo-url">{app.url.replace('https://', '')}&nbsp;&rarr;</span>
+        </a>
+      ))}
     </div>
+  </section>
+
+  <section class="featured-writing">
+    <h2>Latest writing</h2>
+    <a class="writing-feature" href={`${base}/writing/flip-the-hammer-over`}>
+      <div class="writing-feature-body">
+        <h3>Flip the hammer over</h3>
+        <p class="writing-feature-desc">How I learned to write as little software as possible.</p>
+        <p class="writing-feature-meta">
+          <time datetime="2026-05-08">May 8, 2026</time>
+        </p>
+      </div>
+      <span class="writing-feature-cta" aria-hidden="true">Read&nbsp;&rarr;</span>
+    </a>
   </section>
 </Base>
 
-<script>
-  const carousel = document.getElementById('app-carousel');
-  if (carousel) {
-    const wrapper = carousel.closest('.carousel-wrapper');
-    const buttons = wrapper?.querySelectorAll('.carousel-nav') ?? [];
-    buttons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const dir = (btn as HTMLButtonElement).dataset.dir === 'next' ? 1 : -1;
-        const amount = carousel.clientWidth * 0.75;
-        carousel.scrollBy({ left: amount * dir, behavior: 'smooth' });
-      });
+<script is:inline>
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('video[autoplay]').forEach(function (v) {
+      v.removeAttribute('autoplay');
+      v.removeAttribute('loop');
+      v.pause();
     });
   }
 </script>
 
 <style>
   .hero {
-    padding: var(--space-2xl) 0 var(--space-xl);
+    padding: var(--space-md) 0 var(--space-lg);
     border-bottom: 1px solid var(--color-border-soft);
   }
 
   .hero h1 {
     font-size: var(--text-4xl);
-    margin-bottom: var(--space-sm);
+    margin-bottom: var(--space-xs);
   }
 
   .tagline {
     font-size: var(--text-xl);
     color: var(--color-accent);
     font-style: italic;
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-sm);
     line-height: var(--leading-snug);
   }
 
@@ -296,14 +322,15 @@ const liveApps = [
     color: var(--color-text);
     font-size: var(--text-base);
     line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-sm);
   }
 
-  .hero-now {
+  .hero-roles {
     max-width: var(--max-width-prose);
-    margin-top: var(--space-md);
     font-size: var(--text-sm);
     color: var(--color-text-muted);
     line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-lg);
   }
 
   .hero-now-label {
@@ -315,11 +342,83 @@ const liveApps = [
     margin-right: var(--space-sm);
   }
 
+  .hero-ctas {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-md);
+    font-size: var(--text-base);
+    font-family: var(--font-serif);
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .btn-primary {
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border-color: var(--color-accent);
+  }
+
+  .btn-primary:hover {
+    background: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+    color: var(--color-bg);
+    text-decoration: none;
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-text);
+    border-color: var(--color-border);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  /* ─── Proof strip ───────────────────────────────────────── */
+
+  .proof-strip {
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+
+  .proof-line {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .proof-line + .proof-line {
+    margin-top: var(--space-xs);
+  }
+
+  .proof-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-highlight-text);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-right: var(--space-sm);
+  }
+
   /* ─── Featured writing ──────────────────────────────────── */
 
   .featured-writing {
-    padding: var(--space-xl) 0;
-    border-bottom: 1px solid var(--color-border-soft);
+    padding: var(--space-xl) 0 var(--space-2xl);
+    border-top: 1px solid var(--color-border-soft);
   }
 
   .featured-writing h2,
@@ -404,7 +503,7 @@ const liveApps = [
   /* ─── Selected work (two-column) ────────────────────────── */
 
   .selected-work {
-    padding: var(--space-xl) 0;
+    padding: var(--space-lg) 0;
     border-bottom: 1px solid var(--color-border-soft);
   }
 
@@ -412,7 +511,7 @@ const liveApps = [
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: var(--space-xl);
-    padding: var(--space-xl) 0;
+    padding: var(--space-lg) 0;
     border-bottom: 1px solid var(--color-border-soft);
     align-items: start;
   }
@@ -428,8 +527,6 @@ const liveApps = [
     }
   }
 
-  /* Matt around every screenshot: paper-tone surround so the app's own palette
-     never butts directly against the site palette. */
   .project-media {
     display: block;
     width: 100%;
@@ -500,7 +597,7 @@ const liveApps = [
     justify-content: space-between;
     flex-wrap: wrap;
     gap: var(--space-sm);
-    margin-bottom: var(--space-xs);
+    margin-bottom: var(--space-sm);
   }
 
   .project-header h3 {
@@ -526,15 +623,34 @@ const liveApps = [
     letter-spacing: 0.02em;
   }
 
-  .project-stack {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-    font-style: italic;
-    margin-bottom: var(--space-sm);
+  .project-details {
+    margin: 0;
   }
 
-  .project-body p {
+  .project-details dt {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-highlight-text);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-xs);
+  }
+
+  .project-details dt:first-child {
+    margin-top: 0;
+  }
+
+  .project-details dd {
+    margin: 0;
+    font-size: var(--text-sm);
     line-height: var(--leading-relaxed);
+    color: var(--color-text);
+  }
+
+  .project-details dd:last-of-type {
+    color: var(--color-text-muted);
+    font-style: italic;
   }
 
   .project-links {
@@ -544,44 +660,20 @@ const liveApps = [
     margin-bottom: 0;
   }
 
-  /* ─── Live apps carousel ────────────────────────────────── */
+  /* ─── Live demos grid ───────────────────────────────────── */
 
   .live-apps {
-    padding: var(--space-xl) 0 var(--space-2xl);
+    padding: var(--space-lg) 0;
+    border-bottom: 1px solid var(--color-border-soft);
   }
 
-  .carousel-wrapper {
-    display: flex;
-    align-items: stretch;
-    gap: var(--space-sm);
-  }
-
-  .carousel {
-    flex: 1;
-    display: flex;
+  .demo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: var(--space-md);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-border) transparent;
-    padding-bottom: var(--space-xs);
   }
 
-  .carousel::-webkit-scrollbar {
-    height: 4px;
-  }
-  .carousel::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .carousel::-webkit-scrollbar-thumb {
-    background: var(--color-border);
-    border-radius: 2px;
-  }
-
-  .carousel-card {
-    scroll-snap-align: start;
-    flex: 0 0 calc((100% - 2 * var(--space-md)) / 3);
+  .demo-card {
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
@@ -594,24 +686,24 @@ const liveApps = [
     transition: border-color 0.2s ease;
   }
 
-  .carousel-card:hover {
+  .demo-card:hover {
     border-color: var(--color-accent);
     color: var(--color-text);
     text-decoration: none;
   }
 
-  .carousel-card h3 {
+  .demo-card h3 {
     margin: 0;
     font-size: var(--text-lg);
     color: var(--color-text);
     transition: color 0.15s ease;
   }
 
-  .carousel-card:hover h3 {
+  .demo-card:hover h3 {
     color: var(--color-accent);
   }
 
-  .carousel-desc {
+  .demo-desc {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
     line-height: var(--leading-relaxed);
@@ -619,48 +711,17 @@ const liveApps = [
     flex: 1;
   }
 
-  .carousel-stack {
+  .demo-stack {
     font-size: var(--text-xs);
     color: var(--color-text-muted);
     font-style: italic;
     margin: 0;
   }
 
-  .carousel-url {
+  .demo-url {
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--color-accent);
     letter-spacing: 0.02em;
-  }
-
-  .carousel-nav {
-    flex-shrink: 0;
-    align-self: center;
-    width: 36px;
-    height: 36px;
-    min-height: 36px;
-    min-width: 36px;
-    border-radius: 50%;
-    border: 1px solid var(--color-border);
-    background: var(--color-bg-elevated);
-    color: var(--color-text-muted);
-    cursor: pointer;
-    font-size: 1.25rem;
-    line-height: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-serif);
-  }
-
-  .carousel-nav:hover {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
-  }
-
-  @media (max-width: 600px) {
-    .carousel-nav {
-      display: none;
-    }
   }
 </style>

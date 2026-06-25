@@ -104,7 +104,10 @@ function buildSvg({ title, description, kicker }) {
   ${descBlock}
   <g transform="translate(80, ${HEIGHT - 60})">
     <rect width="32" height="32" rx="6" fill="${ACCENT}"/>
-    <path d="M9 23V10h2.5l8 9V10h2.5v13h-2.5l-8-9v9h-2.5z" fill="${PAPER}"/>
+    <g fill="none" stroke="${PAPER}" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter">
+      <path d="M7.5 9 V23 L16.5 13 V23"/>
+      <path d="M16.5 23 V9 L20.5 19 L24.5 9 V23"/>
+    </g>
   </g>
   <text x="124" y="${HEIGHT - 39}" font-family="JetBrains Mono, monospace" font-size="22" fill="${TEXT}">
     Nicholas Maassen <tspan fill="${MUTED}"> · nmaass.dev</tspan>
