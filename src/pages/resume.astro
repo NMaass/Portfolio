@@ -1,205 +1,227 @@
 ---
   import Base from '../layouts/Base.astro';
+  import { resume, resumeLinks } from '../data/resume';
+
   const title = 'Nicholas Maassen — Resume';
   const description = 'One-page technical resume — Nicholas Maassen, full-stack engineer.';
-  // TODO: replace with your actual phone number.
-  const phone = '(000) 000-0000';
 ---
 
 <Base {title} {description} noChrome>
   <article class="resume" id="resume">
     <header class="r-head">
-      <h1 class="r-name">Nicholas Maassen</h1>
+      <h1 class="r-name">{resume.name}</h1>
       <p class="r-contact">
-        Westland, MI
+        {resume.location}
         <span aria-hidden="true">·</span>
-        <a href="mailto:nick@nmaass.dev">nick@nmaass.dev</a>
+        <a href={resumeLinks.email}>{resume.email}</a>
         <span aria-hidden="true">·</span>
-        <span class="r-phone">{phone}</span>
+        <span class="r-phone">{resume.phone}</span>
         <span aria-hidden="true">·</span>
-        <a href="https://nmaass.dev">nmaass.dev</a>
+        <a href={resumeLinks.website}>{resume.website}</a>
         <span aria-hidden="true">·</span>
-        <a href="https://github.com/NMaass">github.com/NMaass</a>
+        <a href={resumeLinks.github}>{resume.github}</a>
         <span aria-hidden="true">·</span>
-        <a href="https://www.linkedin.com/in/nmaass/">linkedin.com/in/nmaass</a>
+        <a href={resumeLinks.linkedin}>{resume.linkedin}</a>
       </p>
     </header>
 
     <section class="r-block">
       <h2 class="r-section-title">Summary</h2>
-      <p class="r-summary">
-        Full-stack engineer at Avodah Software since Feb 2024, building client-facing software across
-        scheduling, payments, AI-assisted workflows, CRM dashboards, and integrations. Strongest where
-        product scoping, TypeScript/React implementation, vendor APIs, infrastructure, and production
-        hardening meet.
-      </p>
+      <p class="r-summary">{resume.summary}</p>
     </section>
 
     <section class="r-block">
       <h2 class="r-section-title">Skills</h2>
-      <p class="r-skills">
-        TypeScript, React, Node/Bun, Fastify, Hono, PostgreSQL, Supabase, Drizzle, Firebase,
-        Cloudflare Workers/D1/Pages, Stripe Connect, Clerk, Sentry, Microsoft Graph, Deepgram,
-        OpenAI/OpenRouter, Promptfoo, Playwright, Vitest
-      </p>
-    </section>
-
-    <section class="r-block">
-      <h2 class="r-section-title">Experience</h2>
-      <div class="r-role">
-        <div class="r-role-head">
-          <strong>Avodah Software</strong> — Full Stack Software Engineer
-          <span class="r-dates">Feb 2024–Present</span>
-        </div>
-        <ul class="r-bullets">
-          <li>
-            Built client-facing software across scheduling, payments, healthcare workflows, CRM
-            dashboards, and integration-heavy admin tools; worked across product scoping, UI,
-            backend, vendor APIs, deployment, demos, and production hardening.
-          </li>
-          <li>
-            Built a Cloudflare Workers/D1 scheduling integration syncing LifeLead/GoHighLevel
-            appointments into CoolFocus for pregnancy centers, including reconciliation jobs,
-            encrypted credentials, admin setup, Sentry monitoring, and demo/E2E tooling.
-          </li>
-          <li>
-            Implemented major transaction and onboarding flows for a B2B used-car marketplace:
-            Stripe Connect ACH checkout, webhook-driven payment status, title-verification payout
-            gate, purchase-order states, FedEx/Postmark support, and RLS-backed permissions.
-          </li>
-          <li>
-            Worked on an AI-assisted care-report workflow integrating Microsoft Bookings/Teams,
-            recording ingest, Deepgram transcription, LLM-generated reports, Promptfoo evals, and
-            role-specific review/report surfaces.
-          </li>
-          <li>
-            Built Redtail CRM dashboard/data-review workflows for a financial-planning client,
-            including full reconciliation sync, validation/error surfacing, sync logs, sanitized
-            local fixtures, and staging/live-data handling.
-          </li>
-          <li>
-            Used AI coding tools daily with explicit specs, tests, review passes, and prompt/eval
-            workflows; strongest results came from small vertical slices plus careful
-            verification rather than large unreviewed agent runs.
-          </li>
-        </ul>
+      <div class="r-skills">
+        {resume.skills.map((group) => (
+          <p>
+            <strong>{group.label}:</strong> {group.items.join(', ')}
+          </p>
+        ))}
       </div>
     </section>
 
     <section class="r-block">
-      <h2 class="r-section-title">Projects</h2>
-      <ul class="r-projects">
-        <li>
-          <strong>Cube Merge</strong> — TypeScript, React, Firestore, Cloudflare Pages<br />
-          <span class="r-proj-desc">Real-time cube-change review tool with no-account collaboration, immutable change history, branching, threaded comments, and CubeCobra export.</span>
-        </li>
-        <li>
-          <strong>Trait Ranker</strong> — TypeScript, React, Firebase<br />
-          <span class="r-proj-desc">Pairwise ranking app using heap-sort and merge-sort to reduce user comparisons, with anonymous sessions and a social guessing loop.</span>
-        </li>
-      </ul>
+      <h2 class="r-section-title">Experience</h2>
+      {resume.experience.map((role) => (
+        <div class="r-role">
+          <div class="r-role-grid">
+            <div>
+              <strong>{role.company}</strong>
+              <span class="r-location">{role.location}</span>
+            </div>
+            <div>
+              {role.title}
+              <span class="r-dates">{role.dates}</span>
+            </div>
+          </div>
+          {role.groups.map((group) => (
+            <section class="r-experience-group">
+              <h3>{group.heading}</h3>
+              <ul class="r-bullets">
+                {group.bullets.map((bullet) => <li>{bullet}</li>)}
+              </ul>
+            </section>
+          ))}
+        </div>
+      ))}
     </section>
 
     <section class="r-block r-tight">
       <h2 class="r-section-title">Earlier Experience</h2>
       <ul class="r-old">
-        <li><strong>Politics on the Go</strong> — Full Stack SE Intern · Jan 2023–May 2023</li>
-        <li><strong>Grand Circus</strong> — JavaScript Teaching Assistant · Sep 2022–Jan 2023</li>
-        <li><strong>Blue Cross Blue Shield of Michigan</strong> — CS Intern · 2019</li>
-        <li><strong>Cochrane Supply &amp; Engineering</strong> — Intern · 2016–2019</li>
+        {resume.earlierExperience.map((role) => (
+          <li>
+            <span>
+              <strong>{role.company}</strong> - {role.title}
+            </span>
+            <span class="r-dates">{role.dates}</span>
+            <span class="r-old-desc">{role.description}</span>
+          </li>
+        ))}
       </ul>
     </section>
 
     <section class="r-block r-tight">
       <h2 class="r-section-title">Education</h2>
       <p class="r-edu">
-        <strong>Wayne State University</strong> — B.S. Computer Science · May 2023
+        <span>
+          <strong>{resume.education.school}</strong><br />
+          {resume.education.degree}
+        </span>
+        <span>
+          {resume.education.location}<br />
+          {resume.education.date}
+        </span>
       </p>
+    </section>
+
+    <section class="r-block">
+      <h2 class="r-section-title">Projects</h2>
+      <ul class="r-projects">
+        {resume.projects.map((project) => (
+          <li>
+            <div class="r-project-head">
+              <strong>{project.name}</strong> - {project.stack}
+              <a href={project.url}>{project.url}</a>
+            </div>
+            <span class="r-proj-desc">{project.description}</span>
+          </li>
+        ))}
+      </ul>
     </section>
   </article>
 </Base>
 
 <style>
-  /* ------ Screen layout (centered, print-ready look) ------ */
   .resume {
     max-width: 8.5in;
     margin: var(--space-xl) auto;
-    padding: 0.55in 0.6in;
+    padding: 0.52in 0.58in;
     font-family: var(--font-serif);
-    font-size: 10.5pt;
-    line-height: 1.34;
+    font-size: 10.2pt;
+    line-height: 1.28;
     color: var(--color-text);
   }
 
   .r-head {
     text-align: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.45rem;
   }
+
   .r-name {
     font-size: 22pt;
     font-weight: 600;
     letter-spacing: 0.02em;
-    margin: 0 0 0.15rem 0;
+    margin: 0 0 0.12rem;
     line-height: 1;
   }
+
   .r-contact {
-    font-size: 10pt;
+    font-size: 9.7pt;
     margin: 0;
     color: var(--color-text-muted);
   }
+
   .r-contact a {
     color: var(--color-text);
     text-decoration: none;
   }
+
   .r-contact span[aria-hidden="true"] {
     margin: 0 0.35em;
     color: var(--color-border);
   }
+
   .r-phone {
     color: var(--color-text-muted);
   }
 
   .r-block {
-    margin-top: 0.6rem;
+    margin-top: 0.48rem;
   }
+
   .r-block.r-tight {
-    margin-top: 0.45rem;
+    margin-top: 0.38rem;
   }
 
   .r-section-title {
-    font-size: 10.5pt;
+    font-size: 10.2pt;
     text-transform: uppercase;
     letter-spacing: 0.12em;
     color: var(--color-accent);
     border-bottom: 1px solid var(--color-border);
-    padding-bottom: 0.12rem;
-    margin: 0 0 0.35rem 0;
+    padding-bottom: 0.1rem;
+    margin: 0 0 0.28rem;
     font-weight: 600;
   }
 
   .r-summary,
-  .r-skills {
+  .r-skills p {
     margin: 0;
-    font-size: 10.5pt;
+    font-size: 10.2pt;
   }
-  .r-skills {
+
+  .r-skills p + p {
+    margin-top: 0.1rem;
+  }
+
+  .r-skills strong {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .r-role-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.2rem 1rem;
+    font-size: 10.2pt;
+    margin-bottom: 0.2rem;
+  }
+
+  .r-role-grid > div:nth-child(even),
+  .r-edu > span:last-child {
+    text-align: right;
+  }
+
+  .r-role-grid strong {
+    font-weight: 600;
+  }
+
+  .r-location,
+  .r-dates {
+    display: block;
     color: var(--color-text-muted);
   }
 
-  .r-role {
-    margin: 0;
+  .r-experience-group {
+    margin-top: 0.25rem;
   }
-  .r-role-head {
-    font-size: 10.5pt;
-    margin-bottom: 0.2rem;
-  }
-  .r-role-head strong {
+
+  .r-experience-group h3 {
+    font-size: 10.2pt;
+    margin: 0 0 0.08rem;
     font-weight: 600;
-  }
-  .r-dates {
-    float: right;
-    color: var(--color-text-muted);
-    font-weight: 400;
   }
 
   .r-bullets,
@@ -209,14 +231,17 @@
     padding: 0;
     margin: 0;
   }
+
   .r-bullets {
     padding-left: 0.9rem;
   }
+
   .r-bullets li {
     position: relative;
-    margin-bottom: 0.22rem;
+    margin-bottom: 0.1rem;
     padding-left: 0;
   }
+
   .r-bullets li::before {
     content: '•';
     position: absolute;
@@ -224,37 +249,52 @@
     color: var(--color-text-muted);
   }
 
-  .r-projects li {
-    margin-bottom: 0.25rem;
-  }
-  .r-projects strong {
-    font-weight: 600;
-  }
-  .r-proj-desc {
-    color: var(--color-text-muted);
+  .r-old li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0 1rem;
+    margin-bottom: 0.18rem;
   }
 
-  .r-old {
-    font-size: 10pt;
-    color: var(--color-text-muted);
-  }
-  .r-old li {
-    margin-bottom: 0.12rem;
-  }
-  .r-old strong {
+  .r-old strong,
+  .r-projects strong,
+  .r-edu strong {
     color: var(--color-text);
     font-weight: 600;
   }
 
-  .r-edu {
-    margin: 0;
-    font-size: 10.5pt;
-  }
-  .r-edu strong {
-    font-weight: 600;
+  .r-old-desc {
+    color: var(--color-text-muted);
+    grid-column: 1 / -1;
   }
 
-  /* ------ Print: force one page ------ */
+  .r-edu {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    margin: 0;
+    font-size: 10.2pt;
+  }
+
+  .r-projects li {
+    margin-bottom: 0.22rem;
+  }
+
+  .r-project-head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+  }
+
+  .r-project-head a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .r-proj-desc {
+    color: var(--color-text-muted);
+  }
+
   @media print {
     :root {
       --color-text: #111111;
@@ -263,13 +303,13 @@
       --color-border: #999999;
     }
 
-    html, body {
+    html,
+    body {
       background: #ffffff !important;
       margin: 0 !important;
       padding: 0 !important;
     }
 
-    /* hide all site chrome */
     .site-header,
     .site-footer,
     .skip-link {
@@ -284,51 +324,63 @@
 
     .resume {
       margin: 0;
-      padding: 0.28in 0.5in;
+      padding: 0.12in 0.26in;
       max-width: none;
-      width: 7.5in;
-      font-size: 10.5pt;
-      line-height: 1.2;
+      width: 7.98in;
+      font-size: 8.55pt;
+      line-height: 1.07;
     }
 
     .r-name {
-      font-size: 18pt;
-      margin-bottom: 0.08rem;
+      font-size: 16pt;
+      margin-bottom: 0.03rem;
     }
 
     .r-head {
-      margin-bottom: 0.3rem;
-    }
-
-    .r-block {
-      margin-top: 0.32rem;
-    }
-    .r-block.r-tight {
-      margin-top: 0.24rem;
-    }
-
-    .r-section-title {
-      margin-bottom: 0.22rem;
-      padding-bottom: 0.06rem;
-    }
-
-    .r-role-head {
-      margin-bottom: 0.12rem;
-    }
-
-    .r-bullets li {
-      margin-bottom: 0.1rem;
-    }
-
-    .r-projects li {
       margin-bottom: 0.14rem;
     }
 
-    .r-old {
-      font-size: 9.5pt;
+    .r-block {
+      margin-top: 0.14rem;
     }
-    .r-old li {
-      margin-bottom: 0.06rem;
+
+    .r-block.r-tight {
+      margin-top: 0.12rem;
+    }
+
+    .r-section-title {
+      font-size: 8.7pt;
+      margin-bottom: 0.08rem;
+      padding-bottom: 0.02rem;
+    }
+
+    .r-summary,
+    .r-skills p,
+    .r-role-grid,
+    .r-experience-group h3,
+    .r-edu {
+      font-size: 8.55pt;
+    }
+
+    .r-role-grid {
+      margin-bottom: 0.08rem;
+    }
+
+    .r-experience-group {
+      margin-top: 0.07rem;
+    }
+
+    .r-experience-group h3 {
+      margin-bottom: 0.02rem;
+    }
+
+    .r-bullets li {
+      margin-bottom: 0.01rem;
+    }
+
+    .r-old li,
+    .r-projects li {
+      margin-bottom: 0.04rem;
     }
 
     .resume a {
@@ -336,7 +388,6 @@
       text-decoration: none !important;
     }
 
-    /* keep it to one page */
     .resume,
     .resume * {
       orphans: 2;
@@ -345,22 +396,30 @@
 
     @page {
       size: letter;
-      margin: 0.45in;
+      margin: 0.28in;
     }
   }
 
-  /* On small screens, give it readable padding */
   @media (max-width: 600px) {
     .resume {
       padding: var(--space-lg) var(--space-md);
       font-size: 11pt;
     }
+
     .r-name {
       font-size: 18pt;
     }
-    .r-dates {
-      float: none;
-      display: block;
+
+    .r-role-grid,
+    .r-edu,
+    .r-project-head,
+    .r-old li {
+      grid-template-columns: 1fr;
+    }
+
+    .r-role-grid > div:nth-child(even),
+    .r-edu > span:last-child {
+      text-align: left;
     }
   }
 </style>

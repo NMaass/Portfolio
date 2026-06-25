@@ -14,8 +14,8 @@ export default defineConfig({
   trailingSlash: 'ignore',
   redirects: {
     // Permanent: post renamed twice. Both old slugs point at the current one.
-    '/writing/when-to-stop-architecting': '/writing/put-the-hammer-down',
-    '/writing/launching-is-letting-go': '/writing/put-the-hammer-down',
+    '/writing/when-to-stop-architecting': '/writing/flip-the-hammer-over',
+    '/writing/launching-is-letting-go': '/writing/flip-the-hammer-over',
   },
   integrations: [
     sitemap({

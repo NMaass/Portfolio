@@ -3,6 +3,7 @@ layout: ../../layouts/Post.astro
 title: Flip the hammer over
 description: How I learned to write as little software as possible.
 date: 2026-05-08
+softwareChat: true
 ---
 
 My job is primarily solving problems with software solutions, but one problem prompted my lead to tell me to close my IDE.

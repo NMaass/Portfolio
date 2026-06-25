@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import { bookingUrl } from '../data/resume';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
@@ -43,11 +44,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <li><a href="mailto:nick@nmaass.dev">nick@nmaass.dev</a></li>
       <li><a href="https://github.com/NMaass">github.com/NMaass</a></li>
       <li><a href="https://www.linkedin.com/in/nmaass/">LinkedIn</a></li>
-      <li><a href={`${base}/resume`}>Resume</a> · <a href={`${base}/nicholas-maassen-resume.pdf`}>PDF resume</a></li>
+      <li><a href={`${base}/resume`}>Resume</a> · <a href={`${base}/nicholas-maassen-resume.pdf`}>Resume PDF</a></li>
     </ul>
 
     <p class="about-note">
-      I also keep a few 30-minute <a href={`${base}/software-chats`}>software chat slots</a>
+      I also keep a few 30-minute <a href={bookingUrl} target="_blank" rel="noopener">software chat slots</a>
       open for people who want to talk products, tools, workflows, or AI-assisted building.
     </p>
   </section>

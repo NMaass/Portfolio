@@ -1,18 +1,20 @@
 ---
 import Base from './Base.astro';
 import readingTime from 'reading-time';
+import { bookingUrl } from '../data/resume';
 
 interface Frontmatter {
   title: string;
   description?: string;
   date: string;
+  softwareChat?: boolean;
 }
 
 interface Props {
   frontmatter: Frontmatter;
 }
 
-const { title, description, date } = Astro.props.frontmatter;
+const { title, description, date, softwareChat } = Astro.props.frontmatter;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const formatted = new Date(date).toLocaleDateString('en-US', {
@@ -86,6 +88,11 @@ const linkedinShare =
       <p class="post-footer-more">
         More writing on the <a href={`${base}/writing`}>index</a>.
       </p>
+      {softwareChat && (
+        <p class="post-footer-chats">
+          I keep a few software chat slots open <a href={bookingUrl} target="_blank" rel="noopener">here</a>.
+        </p>
+      )}
     </footer>
   </article>
 </Base>
@@ -196,5 +203,11 @@ const linkedinShare =
     color: var(--color-text-muted);
     font-size: var(--text-sm);
     margin: 0;
+  }
+
+  .post-footer-chats {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    margin: var(--space-sm) 0 0 0;
   }
 </style>

@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import { bookingUrl } from '../data/resume';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const liveApps = [
@@ -51,9 +52,23 @@ const liveApps = [
       Product Engineer · Implementation Engineer · Forward-Deployed Engineer
     </p>
     <div class="hero-ctas">
-      <a class="btn btn-primary" href={`${base}/contact`}>Contact</a>
+      <a class="btn btn-primary" href={bookingUrl} target="_blank" rel="noopener">Book a chat</a>
       <a class="btn btn-secondary" href={`${base}/resume`}>View resume</a>
     </div>
+  </section>
+
+  <section class="featured-writing">
+    <h2>Latest writing</h2>
+    <a class="writing-feature" href={`${base}/writing/flip-the-hammer-over`}>
+      <div class="writing-feature-body">
+        <h3>Flip the hammer over</h3>
+        <p class="writing-feature-desc">How I learned to write as little software as possible.</p>
+        <p class="writing-feature-meta">
+          <time datetime="2026-05-08">May 8, 2026</time>
+        </p>
+      </div>
+      <span class="writing-feature-cta" aria-hidden="true">Read&nbsp;&rarr;</span>
+    </a>
   </section>
 
   <section class="proof-strip" aria-label="Recent work and stack">
@@ -68,7 +83,12 @@ const liveApps = [
   </section>
 
   <section class="selected-work" id="work">
-    <h2>Selected Work</h2>
+    <h2>Work</h2>
+    <p class="work-intro">
+      Client systems first: production workflows, integrations, payments, CRM sync, and AI-assisted
+      operations. Public side projects follow as live demos with code.
+    </p>
+    <h3 class="work-group-title">Client systems</h3>
 
     <article class="project project-nda">
       <div class="project-media project-media-stack" aria-hidden="true">
@@ -185,6 +205,8 @@ const liveApps = [
       </div>
     </article>
 
+    <h3 class="work-group-title">Public tools</h3>
+
     <article class="project">
       <a class="project-media" href="https://cube-merge.nmaass.dev" aria-label="Open Cube Merge">
         <img
@@ -273,19 +295,6 @@ const liveApps = [
     </div>
   </section>
 
-  <section class="featured-writing">
-    <h2>Latest writing</h2>
-    <a class="writing-feature" href={`${base}/writing/flip-the-hammer-over`}>
-      <div class="writing-feature-body">
-        <h3>Flip the hammer over</h3>
-        <p class="writing-feature-desc">How I learned to write as little software as possible.</p>
-        <p class="writing-feature-meta">
-          <time datetime="2026-05-08">May 8, 2026</time>
-        </p>
-      </div>
-      <span class="writing-feature-cta" aria-hidden="true">Read&nbsp;&rarr;</span>
-    </a>
-  </section>
 </Base>
 
 <script is:inline>
@@ -417,8 +426,8 @@ const liveApps = [
   /* ─── Featured writing ──────────────────────────────────── */
 
   .featured-writing {
-    padding: var(--space-xl) 0 var(--space-2xl);
-    border-top: 1px solid var(--color-border-soft);
+    padding: var(--space-xl) 0;
+    border-bottom: 1px solid var(--color-border-soft);
   }
 
   .featured-writing h2,
@@ -505,6 +514,19 @@ const liveApps = [
   .selected-work {
     padding: var(--space-lg) 0;
     border-bottom: 1px solid var(--color-border-soft);
+  }
+
+  .work-intro {
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    max-width: var(--max-width-prose);
+    margin-bottom: var(--space-xl);
+  }
+
+  .work-group-title {
+    color: var(--color-accent);
+    font-size: var(--text-lg);
+    margin: var(--space-xl) 0 0;
   }
 
   .project {

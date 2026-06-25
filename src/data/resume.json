@@ -1,0 +1,116 @@
+{
+  "name": "Nicholas Maassen",
+  "title": "Full Stack Software Engineer",
+  "location": "Westland, MI",
+  "email": "nick@nmaass.dev",
+  "phone": "734-748-8177",
+  "website": "nmaass.dev",
+  "github": "github.com/NMaass",
+  "linkedin": "linkedin.com/in/nmaass",
+  "summary": "Full-stack engineer at Avodah Software since Feb 2024, building workflow software across CRM dashboards, payments, scheduling, integrations, and AI-assisted reporting. Focused on reliability, performance, product scoping, TypeScript/React, vendor APIs, and production hardening.",
+  "skills": [
+    {
+      "label": "Languages/Stack",
+      "items": [
+        "TypeScript",
+        "JavaScript",
+        "React",
+        "Node.js",
+        "Bun",
+        "Fastify",
+        "PostgreSQL",
+        "Supabase",
+        "Drizzle",
+        "Firebase",
+        "AWS Lambda/DynamoDB"
+      ]
+    },
+    {
+      "label": "Platform/AI",
+      "items": [
+        "Cloudflare Workers/D1/Pages",
+        "Fly.io",
+        "Stripe Connect",
+        "Clerk",
+        "Sentry",
+        "Microsoft Graph",
+        "Deepgram",
+        "OpenAI/OpenRouter",
+        "Promptfoo",
+        "Playwright",
+        "Vitest"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "company": "Avodah Software",
+      "location": "Farmington Hills, MI",
+      "title": "Full Stack Software Engineer",
+      "dates": "Feb 2024 - Present",
+      "groups": [
+        {
+          "heading": "Financial dashboard and CRM sync",
+          "bullets": [
+            "Added CI-enforced performance budgets for a CRM-backed dashboard: backend p95 < 200 ms, initial bundle < 200 KB gzip, and dashboard LCP < 500 ms; measured dashboard p95 55 ms, 153 KB gzip bundle, and 102 ms LCP.",
+            "Hardened CRM sync and review/staging workflows with live-data sanitization, PII leak guards that fail before writes, human-readable admin error surfaces, dedicated test database isolation, and a sync optimization saving 5+ vendor API requests per run."
+          ]
+        },
+        {
+          "heading": "B2B marketplace and payments",
+          "bullets": [
+            "Implemented Stripe Connect ACH checkout, webhook-driven payment status, title-verification payout gates, purchase-order states, FedEx/Postmark support, onboarding gates, and RLS-backed permissions.",
+            "Added 172 unit tests plus CI gates across API/frontend/shared transaction paths; extracted payment/auth/email services and made payout failures queryable for reconciliation without triggering webhook retry storms."
+          ]
+        },
+        {
+          "heading": "AI-assisted care workflow",
+          "bullets": [
+            "Added transcript word-count and duration gates that skip empty-report generation, avoiding 6 LLM calls and review-ready emails when a recorded meeting effectively did not happen.",
+            "Hardened scheduling/report operations around duplicate booking risk, reminder delivery, Deepgram transcription metadata, Promptfoo evals, role-specific review surfaces, and recipient-safe rebooking flows."
+          ]
+        },
+        {
+          "heading": "Scheduling integration",
+          "bullets": [
+            "Built an appointment-sync integration across two vendor systems with encrypted credentials, setup flows, scheduled reconciliation, sync logs, Sentry monitoring, demo tooling, and E2E validation."
+          ]
+        }
+      ]
+    }
+  ],
+  "earlierExperience": [
+    {
+      "company": "Politics On The Go",
+      "title": "Full Stack Software Engineering Intern",
+      "dates": "Jan 2023 - May 2023",
+      "description": "Flutter/AWS civic engagement app; built Lambda/API Gateway functions that improved matching accuracy by 50%."
+    },
+    {
+      "company": "Grand Circus",
+      "title": "JavaScript Teaching Assistant",
+      "dates": "Sep 2022 - Jan 2023",
+      "description": "Helped teach Angular and TypeScript; led portions of class and mentored students one-on-one."
+    }
+  ],
+  "education": {
+    "school": "Wayne State University",
+    "degree": "Bachelor of Science, Computer Science",
+    "location": "Detroit, MI",
+    "date": "May 2023"
+  },
+  "projects": [
+    {
+      "name": "Cube Merge",
+      "stack": "TypeScript, React, Firestore, Cloudflare Pages",
+      "url": "https://cube-merge.nmaass.dev",
+      "description": "Google Docs-style collaboration tool for Magic: The Gathering hobby groups, with anonymous branching, immutable change history, threaded comments, and CubeCobra export."
+    },
+    {
+      "name": "Trait Ranker",
+      "stack": "TypeScript, React, Firebase",
+      "url": "https://trait-ranker.nmaass.dev",
+      "description": "Pairwise ranking app using heap-sort and merge-sort to reduce comparisons, with anonymous sessions and a social guessing loop."
+    }
+  ]
+}

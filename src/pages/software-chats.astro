@@ -1,35 +1,17 @@
 ---
 import Base from '../layouts/Base.astro';
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-
-const BOOKING_URL = 'https://calendar.app.google/tSLRNcWWUGzvcrnf7';
+import { bookingUrl } from '../data/resume';
 ---
 
 <Base
   title="Software chats — Nicholas Maassen"
   description="A few open 30-minute slots for talking about products, tools, workflows, UX details, and AI-assisted building."
 >
+  <meta http-equiv="refresh" content={`0; url=${bookingUrl}`} />
   <section class="chats">
     <h1>Software chats</h1>
-
-    <p>
-      I keep a few 30-minute slots open for conversations with people who care
-      about software products.
-    </p>
-
-    <p>
-      Could be a product you're building, a tool you like, a workflow that feels
-      harder than it should, an AI-assisted build process, or just a
-      software/product question you want to talk through with another builder.
-    </p>
-
-    <p>
-      No pitch deck, prep, or formal agenda needed.
-    </p>
-
-    <a class="chat-cta" href={BOOKING_URL} target="_blank" rel="noopener">
-      Book a 30-minute chat
-    </a>
+    <p>Opening the booking calendar.</p>
+    <a class="chat-cta" href={bookingUrl} target="_blank" rel="noopener">Book a 30-minute chat</a>
   </section>
 </Base>
 

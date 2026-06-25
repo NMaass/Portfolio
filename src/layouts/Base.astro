@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { bookingUrl } from '../data/resume';
 
 interface Props {
   title: string;
@@ -88,7 +89,15 @@ const resolvedOgImage = ogImage
         <a href={`${base}/writing`}>Writing</a>
         <a href={`${base}/resume`}>Resume</a>
         <a href={`${base}/about`}>About</a>
-        <a href={`${base}/contact`}>Contact</a>
+        <a href={bookingUrl} target="_blank" rel="noopener">Chat</a>
+        <details class="contact-menu">
+          <summary>Contact</summary>
+          <div class="contact-menu-panel">
+            <a href="mailto:nick@nmaass.dev">Email</a>
+            <a href="https://www.linkedin.com/in/nmaass/">LinkedIn</a>
+            <a href="https://github.com/NMaass">GitHub</a>
+          </div>
+        </details>
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme">
           <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="4" fill="currentColor"></circle>
@@ -113,11 +122,11 @@ const resolvedOgImage = ogImage
         ·
         <a href="mailto:nick@nmaass.dev">Email</a>
         ·
+        <a href={bookingUrl} target="_blank" rel="noopener">Chat</a>
+        ·
         <a href={`${base}/resume`}>Resume</a>
         ·
-        <a href={`${base}/nicholas-maassen-resume.pdf`}>PDF resume</a>
-        ·
-        <a href={`${base}/software-chats`}>Software chats</a>
+        <a href={`${base}/nicholas-maassen-resume.pdf`}>Resume PDF</a>
       </p>
       </footer>
     )}
