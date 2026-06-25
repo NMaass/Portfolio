@@ -1,0 +1,144 @@
+---
+import Base from '../layouts/Base.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const contactOptions = [
+  {
+    label: 'Email',
+    detail: 'Best for role conversations, project inquiries, and anything that needs a direct reply.',
+    href: 'mailto:nick@nmaass.dev',
+    display: 'nick@nmaass.dev',
+  },
+  {
+    label: 'LinkedIn',
+    detail: 'Useful for recruiting, professional context, and staying connected.',
+    href: 'https://www.linkedin.com/in/nmaass/',
+    display: 'linkedin.com/in/nmaass',
+  },
+  {
+    label: 'GitHub',
+    detail: 'Public projects, profile README, and code-oriented context.',
+    href: 'https://github.com/NMaass',
+    display: 'github.com/NMaass',
+  },
+  {
+    label: 'Software chats',
+    detail: 'A 30-minute slot for products, workflows, AI-assisted building, or devtools conversations.',
+    href: `${base}/software-chats`,
+    display: 'Open slots',
+  },
+];
+---
+
+<Base title="Contact — Nicholas Maassen" description="Ways to contact Nicholas Maassen.">
+  <section class="contact-page">
+    <div class="contact-intro">
+      <p class="eyebrow">Contact</p>
+      <h1>Pick the channel that matches the reason.</h1>
+      <p>
+        Email is the most direct route. LinkedIn and GitHub are there for profile context,
+        and software chats are for lighter exploratory conversations.
+      </p>
+    </div>
+
+    <div class="contact-options" aria-label="Contact options">
+      {contactOptions.map((option) => (
+        <a class="contact-option" href={option.href}>
+          <span class="contact-option-label">{option.label}</span>
+          <span class="contact-option-display">{option.display}</span>
+          <span class="contact-option-detail">{option.detail}</span>
+        </a>
+      ))}
+    </div>
+
+    <div class="resume-row">
+      <p>
+        Prefer a compact overview?
+        <a href={`${base}/resume`}>Read the web resume</a>
+        or
+        <a href={`${base}/nicholas-maassen-resume.pdf`}>download the PDF resume</a>.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .contact-page {
+    max-width: var(--max-width-prose);
+    padding: var(--space-2xl) 0;
+  }
+
+  .contact-intro {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .eyebrow {
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-sm);
+    text-transform: uppercase;
+  }
+
+  .contact-intro h1 {
+    font-size: var(--text-4xl);
+    margin-bottom: var(--space-md);
+  }
+
+  .contact-intro p:not(.eyebrow) {
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    max-width: 64ch;
+  }
+
+  .contact-options {
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  .contact-option {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    display: grid;
+    gap: var(--space-xs);
+    padding: var(--space-lg);
+    text-decoration: none;
+  }
+
+  .contact-option:hover {
+    border-color: var(--color-accent);
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .contact-option-label {
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+  }
+
+  .contact-option-display {
+    color: var(--color-accent);
+    font-size: var(--text-xl);
+    line-height: var(--leading-snug);
+    overflow-wrap: anywhere;
+  }
+
+  .contact-option-detail {
+    color: var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  .resume-row {
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-lg);
+  }
+
+  .resume-row p {
+    margin: 0;
+  }
+</style>

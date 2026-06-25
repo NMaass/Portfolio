@@ -43,7 +43,7 @@ public/                  static assets, served as-is
   CNAME                  GitHub Pages custom-domain marker
   favicon.svg            inline-recolorable mark
   robots.txt             allow-all + sitemap reference
-  resume.pdf             resume link from the home page + footer
+  nicholas-maassen-resume.pdf  named resume download
   projects/              project screenshots
 src/
   layouts/
@@ -51,7 +51,8 @@ src/
     Post.astro           blog post layout (frontmatter title/date/description)
   pages/
     index.astro          home: hero, project cards, recent writing
-    about.astro          about + tools + contact
+    about.astro          about + tools + contact summary
+    contact.astro        contact options
     writing/index.astro  posts index
     writing/*.md         post markdown with frontmatter
   styles/

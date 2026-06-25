@@ -42,9 +42,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <ul class="contact-list">
       <li><a href="mailto:nick@nmaass.dev">nick@nmaass.dev</a></li>
       <li><a href="https://github.com/NMaass">github.com/NMaass</a></li>
-      <li><a href="https://www.linkedin.com/in/nicholas-maassen-63ab53187/">LinkedIn</a></li>
-      <li><a href={`${base}/resume`}>Resume</a> · <a href={`${base}/resume.pdf`}>PDF</a></li>
+      <li><a href="https://www.linkedin.com/in/nmaass/">LinkedIn</a></li>
+      <li><a href={`${base}/resume`}>Resume</a> · <a href={`${base}/nicholas-maassen-resume.pdf`}>PDF resume</a></li>
     </ul>
+
+    <p class="about-note">
+      I also keep a few 30-minute <a href={`${base}/software-chats`}>software chat slots</a>
+      open for people who want to talk products, tools, workflows, or AI-assisted building.
+    </p>
   </section>
 </Base>
 
@@ -82,5 +87,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   .contact-list li {
     margin-bottom: var(--space-sm);
+  }
+
+  .about-note {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    margin-top: var(--space-2xl);
+    margin-bottom: 0;
   }
 </style>
