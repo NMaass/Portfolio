@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="NM">
+  <text x="32" y="31.5"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-family='ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
+        font-size="32"
+        font-weight="650"
+        letter-spacing="-0.055em"
+        fill="#c9a96e">NM</text>
+</svg>

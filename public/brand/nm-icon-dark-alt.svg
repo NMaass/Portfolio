@@ -1,17 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="nmaass.dev">
-  <style>
-    :root {
-      --icon-bg: #2d4a3e;
-      --icon-fg: #f5efe0;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --icon-bg: #2d4a3e;
-        --icon-fg: #e8dcc0;
-      }
-    }
-  </style>
-  <rect x="4" y="4" width="56" height="56" rx="12" fill="var(--icon-bg)"/>
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="#232a25" stroke="#3a4540" stroke-width="0"/>
   <text x="32" y="31.5"
         text-anchor="middle"
         dominant-baseline="central"
@@ -19,5 +7,5 @@
         font-size="24"
         font-weight="650"
         letter-spacing="-0.055em"
-        fill="var(--icon-fg)">NM</text>
+        fill="#c9a96e">NM</text>
 </svg>

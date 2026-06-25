@@ -39,6 +39,7 @@ const resolvedOgImage = ogImage
     <link rel="icon" type="image/png" sizes="48x48" href={`${base}/favicon-48.png`} />
     <link rel="icon" type="image/png" sizes="32x32" href={`${base}/favicon-32.png`} />
     <link rel="apple-touch-icon" sizes="180x180" href={`${base}/apple-touch-icon.png`} />
+    <link rel="manifest" href={`${base}/site.webmanifest`} />
     <link rel="alternate" type="application/rss+xml" title="Nicholas Maassen — Writing" href={`${base}/rss.xml`} />
 
     {/* Open Graph */}
@@ -80,13 +81,7 @@ const resolvedOgImage = ogImage
     {!noChrome && (
       <header class="site-header">
       <a href={`${base}/`} class="site-mark" aria-label="Home">
-        <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true">
-          <rect width="64" height="64" rx="10" fill="currentColor"/>
-          <g fill="none" stroke="var(--color-bg)" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter">
-            <path d="M15 18 V46 L33 26 V46"/>
-            <path d="M33 46 V18 L41 38 L49 18 V46"/>
-          </g>
-        </svg>
+        <img src={`${base}/brand/nm-icon-primary.svg`} width="44" height="44" alt="" />
       </a>
       <nav class="site-nav" aria-label="Primary">
         <a href={`${base}/#work`}>Work</a>

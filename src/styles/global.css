@@ -180,6 +180,7 @@ img {
 .site-mark {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   color: var(--color-accent);
   text-decoration: none;
   border-radius: var(--radius-sm);
@@ -189,8 +190,11 @@ img {
   color: var(--color-accent-hover);
 }
 
-.site-mark svg {
+.site-mark img {
   display: block;
+  width: 44px;
+  height: 44px;
+  border-radius: 0;
 }
 
 .site-nav {
