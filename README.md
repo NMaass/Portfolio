@@ -42,6 +42,7 @@ npm run preview  # serve the built site locally
 public/                  static assets, served as-is
   CNAME                  GitHub Pages custom-domain marker
   favicon.svg            inline-recolorable mark
+  robots.txt             allow-all + sitemap reference
   resume.pdf             resume link from the home page + footer
   projects/              project screenshots
 src/
@@ -56,7 +57,7 @@ src/
   styles/
     tokens.css           color + type scale + spacing tokens
     global.css           reset, layout primitives, prose styles
-astro.config.mjs         site config + redirects table
+astro.config.mjs         site config + redirects table + @astrojs/sitemap
 .github/workflows/
   deploy.yml             build with Node 22, deploy to Pages via Actions
 ```
