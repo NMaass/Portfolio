@@ -27,6 +27,12 @@ const liveApps = [
     description: 'A small playground for thinking about shapes. Shape Registry Durable Object + Vite client.',
     stack: 'React · Cloudflare Workers · Durable Objects',
   },
+  {
+    name: 'Bare Recipe',
+    url: 'https://recipes.nmaass.dev',
+    description: 'Paste a recipe URL, get just the recipe. No ads, no life stories.',
+    stack: 'React · Vite · Cloudflare Workers',
+  },
 ];
 ---
 
@@ -34,19 +40,18 @@ const liveApps = [
   <section class="hero">
     <h1>Nicholas Maassen</h1>
     <p class="tagline">
-      Full-stack engineer. Shipping software for users' actual workflows.
+      Full-stack engineer building workflow-heavy software.
     </p>
     <p class="lede">
-      Contracting with <a href="https://avodahsoftware.com">Avodah Software</a> since Feb 2024.
-      Worked on 9 client products across payments, scheduling, AI-assisted healthcare, and
-      multi-tenant admin tools, leading 4 end-to-end and contributing substantial slices to 5 more.
-      Strong on translating ambiguous client asks into scoped launches, production hardening,
-      and prompt engineering for agentic AI.
+      I work across product scoping, UI, backend, vendor APIs, infrastructure, demos, and
+      production hardening. Recently: scheduling sync, payment workflows, AI-assisted care
+      reports, CRM dashboards, and integration-heavy admin tools.
     </p>
     <p class="hero-now">
-      <span class="hero-now-label">Currently</span>
-      Mid-level engineer looking for my next role at a devtools or AI company.
-      Implementation engineer, forward-deployed engineer, customer engineer, or product engineer.
+      <span class="hero-now-label">Looking for</span>
+      Product engineering, implementation engineering, customer engineering, or
+      forward-deployed engineering roles at teams that care about useful software, clear
+      writing, and shipping to real users.
     </p>
   </section>
 
@@ -133,29 +138,101 @@ const liveApps = [
       </div>
     </article>
 
-    <article class="project">
-      <div class="project-media project-media-stat" aria-hidden="true">
-        <div class="stat-grid">
-          <div class="stat"><span class="stat-num">4</span><span class="stat-label">Led end-to-end</span></div>
-          <div class="stat"><span class="stat-num">5</span><span class="stat-label">Slices contributed</span></div>
-          <div class="stat"><span class="stat-num">100</span><span class="stat-label">Production Lighthouse</span></div>
-        </div>
+    <article class="project project-nda">
+      <div class="project-media project-media-stack" aria-hidden="true">
+        <ul class="stack-plate">
+          <li>Cloudflare Workers</li>
+          <li>D1</li>
+          <li>Hono</li>
+          <li>React</li>
+          <li>Clerk</li>
+          <li>Sentry</li>
+        </ul>
       </div>
       <div class="project-body">
         <header class="project-header">
-          <h3>Avodah Software (Feb 2024–present)</h3>
-          <span class="project-meta">Contract · NDA-safe summary</span>
+          <h3>Scheduling sync for pregnancy centers</h3>
+          <span class="project-meta">Client work · NDA-safe</span>
         </header>
-        <p class="project-stack">TypeScript · React · Bun · Fastify · Cloudflare Workers · Supabase · Stripe Connect · Microsoft Graph · Deepgram</p>
+        <p class="project-stack">Cloudflare Workers · D1 · Hono · React · Clerk · Sentry</p>
         <p>
-          Worked on 9 client products at Avodah since Feb 2024 — led 4 end-to-end and contributed substantial
-          slices to 5 more. Highlights: an AI-assisted healthcare workflow with streaming transcription,
-          Microsoft Bookings/Teams integration, and parallel-agent LLM review; a GoHighLevel + Cloudflare
-          Workers scheduling integration; a B2B used-car wholesale marketplace with Stripe Connect ACH
-          escrow, FedEx integration, and an invite/onboarding flow.
+          GoHighLevel/LifeLead to CoolFocus integration with reconciliation jobs, lifecycle
+          mapping, and encrypted credentials. Built the admin setup flow, demo automation,
+          and shipped production deployment.
         </p>
-        <p class="project-links">
-          <a href={`${base}/resume.pdf`}>Resume (PDF)</a>
+      </div>
+    </article>
+
+    <article class="project project-nda">
+      <div class="project-media project-media-stack" aria-hidden="true">
+        <ul class="stack-plate">
+          <li>React</li>
+          <li>Supabase</li>
+          <li>Stripe Connect</li>
+          <li>Postmark</li>
+          <li>FedEx</li>
+        </ul>
+      </div>
+      <div class="project-body">
+        <header class="project-header">
+          <h3>B2B automotive marketplace</h3>
+          <span class="project-meta">Client work · NDA-safe</span>
+        </header>
+        <p class="project-stack">React · Supabase · Stripe Connect · Postmark · FedEx</p>
+        <p>
+          ACH checkout, title-verification payout gates, purchase-order states, invitation
+          flows, EIN validation, and RLS-backed permissions across a multi-tenant B2B
+          wholesale flow.
+        </p>
+      </div>
+    </article>
+
+    <article class="project project-nda">
+      <div class="project-media project-media-stack" aria-hidden="true">
+        <ul class="stack-plate">
+          <li>React</li>
+          <li>Bun</li>
+          <li>Microsoft Graph</li>
+          <li>Deepgram</li>
+          <li>OpenAI</li>
+          <li>Promptfoo</li>
+        </ul>
+      </div>
+      <div class="project-body">
+        <header class="project-header">
+          <h3>AI-assisted care workflow</h3>
+          <span class="project-meta">Client work · NDA-safe</span>
+        </header>
+        <p class="project-stack">React · Bun · Microsoft Graph · Deepgram · OpenAI · Promptfoo</p>
+        <p>
+          Booking-to-report pipeline: transcription, LLM-generated reports, prompt/eval
+          tooling, and role-based review surfaces. Production auth and domain hardening for
+          a healthcare context.
+        </p>
+      </div>
+    </article>
+
+    <article class="project project-nda">
+      <div class="project-media project-media-stack" aria-hidden="true">
+        <ul class="stack-plate">
+          <li>React</li>
+          <li>Bun</li>
+          <li>Fastify</li>
+          <li>Drizzle</li>
+          <li>Postgres</li>
+          <li>Redtail CRM</li>
+        </ul>
+      </div>
+      <div class="project-body">
+        <header class="project-header">
+          <h3>Financial-planning dashboard</h3>
+          <span class="project-meta">Client work · NDA-safe</span>
+        </header>
+        <p class="project-stack">React · Bun · Fastify · Drizzle · Postgres · Redtail CRM</p>
+        <p>
+          Dashboard and data-review workflows with Redtail CRM sync. Sanitized local
+          fixtures, staging/live data posture, validation, sync logs, and operational
+          review UX for advisors.
         </p>
       </div>
     </article>
@@ -380,7 +457,7 @@ const liveApps = [
     box-shadow: 0 6px 20px var(--color-shadow);
   }
 
-  .project-media-stat {
+  .project-media-stack {
     aspect-ratio: 16 / 9;
     display: flex;
     align-items: center;
@@ -389,39 +466,28 @@ const liveApps = [
     padding: var(--space-lg);
   }
 
-  .stat-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-lg);
-    text-align: center;
-  }
-
-  .stat {
+  .stack-plate {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: var(--space-xs);
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    height: 100%;
   }
 
-  .stat-num {
-    font-family: var(--font-serif);
-    font-size: var(--text-3xl);
-    font-weight: 600;
-    color: var(--color-accent);
-    line-height: 1;
-    letter-spacing: -0.01em;
-  }
-
-  .stat-label {
+  .stack-plate li {
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--color-text-muted);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  @media (max-width: 600px) {
-    .stat-grid { gap: var(--space-md); }
-    .stat-num { font-size: var(--text-2xl); }
+    letter-spacing: 0.04em;
+    padding: var(--space-xs) var(--space-sm);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg);
   }
 
   .project-body {
@@ -515,7 +581,7 @@ const liveApps = [
 
   .carousel-card {
     scroll-snap-align: start;
-    flex: 0 0 16rem;
+    flex: 0 0 calc((100% - 2 * var(--space-md)) / 3);
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);

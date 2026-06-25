@@ -7,6 +7,7 @@ interface Props {
   ogImage?: string; // absolute or root-relative path to a per-page OG image
   ogType?: 'website' | 'article';
   publishedDate?: string;
+  noChrome?: boolean; // hide site header/footer for standalone document pages (e.g. resume)
 }
 
 const {
@@ -15,6 +16,7 @@ const {
   ogImage,
   ogType = 'website',
   publishedDate,
+  noChrome = false,
 } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const site = Astro.site?.toString().replace(/\/$/, '') ?? 'https://nmaass.dev';
@@ -70,9 +72,10 @@ const resolvedOgImage = ogImage
       } catch (e) {}
     </script>
   </head>
-  <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <header class="site-header">
+  <body data-no-chrome={noChrome ? 'true' : null}>
+    {!noChrome && <a href="#main-content" class="skip-link">Skip to main content</a>}
+    {!noChrome && (
+      <header class="site-header">
       <a href={`${base}/`} class="site-mark" aria-label="Home">
         <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true">
           <rect width="64" height="64" rx="10" fill="currentColor"/>
@@ -93,10 +96,12 @@ const resolvedOgImage = ogImage
         </button>
       </nav>
     </header>
+    )}
     <main id="main-content" tabindex="-1">
       <slot />
     </main>
-    <footer class="site-footer">
+    {!noChrome && (
+      <footer class="site-footer">
       <p>
         <a href="https://github.com/NMaass">GitHub</a>
         ·
@@ -104,9 +109,12 @@ const resolvedOgImage = ogImage
         ·
         <a href="mailto:nick@nmaass.dev">Email</a>
         ·
-        <a href={`${base}/resume.pdf`}>Resume (PDF)</a>
+        <a href={`${base}/resume`}>Resume</a>
+        ·
+        <a href={`${base}/resume.pdf`}>PDF</a>
       </p>
-    </footer>
+      </footer>
+    )}
     <script>
       const toggle = document.getElementById('theme-toggle');
       const html = document.documentElement;
