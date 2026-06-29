@@ -16,18 +16,18 @@ I set up the Fly.io machine using my lead's suggestions on what to provision to 
 
 My lead is a big proponent of failing fast, but this was failing faster than I'd intended. I'd tested with an MP4 of my own, but it was just a black screen, and nothing had flagged. On a real input, the machine ran out of memory and crashed.
 
-Digging in, my hasty analysis of the implementation had been far too trusting of Claude. Several things had to change: The client-side FFmpeg step was in the project but never wired up, so the server received the entire MP4 instead of the extracted M4A audio. The server then buffered the whole file into memory instead of streaming it to Deepgram, and an erroneous copy doubled the footprint.
+Digging in, my hasty analysis of the implementation had been far too trusting of Claude. Several things had to change: The client-side FFmpeg step was in the project but never wired up, so the server received the entire MP4 instead of the extracted M4A audio. The server then buffered the whole file into memory instead of streaming it to Deepgram, and an erroneous copy doubled the footprint. The model fan-out rebuilt the entire request payload for all six calls, instead of serializing the two prompts once and reusing each across the three models.
 
-My lead had been right about the amount of memory the machine needed for the prototype, but it was moving to a pilot test quickly, and I had not considered what specs we would need for concurrent requests at our current architecture.
+My lead had been right about the amount of memory the machine needed for the prototype, but the project was moving to a pilot stage quickly, and I had not considered what specs we would need for concurrent requests with our current architecture.
 
-I was excited to try out Fly.io's autoscaling to turn this pipeline into a microservice, and got to work sketching the edge cases. But I caught myself: I was building for a pilot, not a product launch. So I came up with a quick and dirty solution that would at least account for concurrent requests: a queue held in memory that referenced the location of the files we'd be streaming to disk.
+I identified that this pipeline would make a great microservice, and I was excited to try out Fly.io's autoscaling. I got to work sketching the edge cases, but I caught myself: I was building for a pilot, not a product launch. So I came up with a quick and dirty solution that would at least account for concurrent requests: a queue held in memory that referenced the location of the files we'd be streaming to disk.
 
-I brought these to my lead early on. He just looked at the application, navigated to Fly's pricing page, and said it was negligible to just increase the memory. It was the Paul Graham ["do things that don't scale"](https://paulgraham.com/ds.html) idea, applied to spend: during your launch period you are willing to do inefficient things to defer problems — the more problems a little money can solve, the more time you buy, and pre-launch that's a trade worth making.
+I brought these to my lead early on. He just looked at the application, navigated to Fly's pricing page, and said it was negligible to just increase the memory. He quoted Paul Graham's ["do things that don't scale,"](https://paulgraham.com/ds.html) applied to spend: it's not just that you get to buy time with the money, but that you also get to buy more certainty by not adding more code.
 
 I had not considered that the solution would lie in the config file.
 
 ## What I take from it
 
-When I've been solving software problems with code all day, it's easy to see another problem as another nail that needs to be hammered. At Avoda, I've been given the opportunity to use the full tool belt, and they have been teaching me to zoom out.
+When I've been solving software problems with code all day, it's easy to see another problem as another nail that needs to be hammered. At Avodah, they have been teaching me to zoom out and assess problems in the context of the project's current needs, with every tool in the belt available.
 
-Before launch, some nails actually need to be pried out with the claw end. Sometimes when you see a code solution to a software problem, the answer is to flip the hammer over and close your IDE.
+Before launch, some nails actually need to be pried out with the claw end. Sometimes when I see a code solution to a software problem, the answer is to flip the hammer over and close my IDE.
